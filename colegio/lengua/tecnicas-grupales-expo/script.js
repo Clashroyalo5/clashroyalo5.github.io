@@ -5,6 +5,12 @@ document.getElementById('downloadBtn').addEventListener('click', function() {
     link.click();
   });
   
+  document.getElementById('downloadDoxc').addEventListener('click', function() {
+    const link = document.createElement('a');
+    link.href = 'https://clashroyalo5.github.io/colegio/lengua/tecnicas-grupales-expo/folleto.docx'; // Asegúrate de que la ruta sea correcta
+    link.download = 'Folleto tecnicas grupales - mesa redonda.pptx'; // Nombre del archivo que se descargará
+    link.click();
+  });
   
   document.getElementById('discordBtn').addEventListener('click', function() {
     // Cambia el enlace por la URL de tu grupo de Discord.
