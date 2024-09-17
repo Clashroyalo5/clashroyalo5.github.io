@@ -77,3 +77,8 @@ body {
     cursor: pointer;
   }
   
+  @media screen and (max-width: 768px) {
+    .video-container {
+      width: 100%;
+    }
+  }
