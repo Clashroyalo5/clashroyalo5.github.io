@@ -8,7 +8,7 @@ document.getElementById('downloadBtn').addEventListener('click', function() {
   document.getElementById('downloadDoxc').addEventListener('click', function() {
     const link = document.createElement('a');
     link.href = 'https://clashroyalo5.github.io/colegio/lengua/tecnicas-grupales-expo/folleto.docx'; // Asegúrate de que la ruta sea correcta
-    link.download = 'Folleto tecnicas grupales - mesa redonda.pptx'; // Nombre del archivo que se descargará
+    link.download = 'Folleto tecnicas grupales - mesa redonda.docx'; // Nombre del archivo que se descargará
     link.click();
   });
   
