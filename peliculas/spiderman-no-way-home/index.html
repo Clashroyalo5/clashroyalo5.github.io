@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(119, 119, 119);
+        }
+        a {
+            margin-top: 100px;
+            color: aqua;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <a id="downloadVid">Descargar</a>
+
+    <script>
+        document.getElementById('downloadVid').addEventListener('click', function() {
+            const link = document.createElement('a');
+             link.href = 'https://my.microsoftpersonalcontent.com/personal/90c986cebc60f00c/_layouts/15/download.aspx?UniqueId=0a2d5440-3ac5-4edf-9551-fd4d395bcd11&amp;Translate=false&amp;tempauth=v1e.eyJzaXRlaWQiOiIyYWQ5YTc5Yy1lZGQ5LTQ1ZTQtYTQ3ZS1lNGMyMWFiOTQyMWMiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3MjczODUxMTgifQ.CJQ6I1bQeATAiYqfcQXOZG_ncKDHVV-twt1qXzn9Q3nV9NqJTzfnCUoWCYak4nSK9gCYJHb563gQRdoKxw32U-QwHzbBwx9QSE2jgte9fgIt3D-QFtwiJAlQpTPsNcI6JzLuxrJyE4AVz37mQvJ9aGWPI_mIhZcf5Xzc3YG6TZbiyx9y4gDCdMl-oTyKpCe4M5GmJeErPQk8MsHju7BA-cJuyumAHYk8yCnxqF0Yly4vVZ50rI5BWacwqTjSRs9AUTmm-A3ZIp8rBoJnxt9Hirci_uYhwvNWe2TwG_MGcsYOgdPfUp91oszoq0DsAyTcE3EiviKUDbIPYtac-hxSSfZDLYSyqYSsKh6SAwej0PlV0fRqGEaDm53LCrSumCjNvZnPFoK7qyizsRHaFSxvrw.d8CDo7yYq8CHboSHJXoRzKejDM46cmrUVG42bANohJU&amp;ApiVersion=2.0'; // Asegúrate de que la ruta sea correcta
+             link.download = 'Spider-man No Way Home'; // Nombre del archivo que se descargará
+             link.click();
+         });
+    </script>
+</body>
+</html>
