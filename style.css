@@ -85,8 +85,8 @@ ul li:hover {
     gap: 1rem;
 }
 
-.btn {
-    background: #ff6600;
+.WBtn {
+    background: #1b9c1b;
     color: #fff;
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
@@ -94,8 +94,22 @@ ul li:hover {
     transition: transform 0.3s, background 0.3s;
 }
 
-.btn:hover {
-    background: #cc5200;
+.WBtn:hover {
+    background: #2ad12a;
+    transform: scale(1.1);
+}
+
+.CBtn {
+    background: #1b629c;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.CBtn:hover {
+    background: #4e90c7;
     transform: scale(1.1);
 }
 
