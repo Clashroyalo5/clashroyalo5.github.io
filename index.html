@@ -8,66 +8,98 @@
     <link rel="shortcut icon" href="8.jpeg" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <h1>Abel Nicolás Jaimes Orjuela</h1>
-        <p>Desarrollador Web - Creación de páginas web para negocios con movimiento y diseño atractivo</p>
-    </header>
 
-    <main>
-        <section id="about">
-            <h2>¿Quién soy?</h2>
-            <p>Soy un desarrollador web. Me especializo en el desarrollo de páginas web con diseños modernos y animaciones suaves para brindar la mejor experiencia de usuario.</p>
-        </section>
-
-        <section id="benefits">
-            <h2>Beneficios de trabajar conmigo</h2>
-            <ul>
-                <li>Buena atención: estaré disponible para ayudarte y responder a tus necesidades.</li>
-                <li>Buen diseño con CSS: aseguro un diseño moderno y atractivo adaptado a cualquier dispositivo.</li>
-                <li>Movimientos y efectos con JavaScript básico: añado animaciones que mejoran la experiencia del usuario.</li>
-                <li>Tu página queda con el dominio que elijas: puedo ayudarte a configurar el dominio que mejor se adapte a tu negocio.</li>
-                <li>Codigo Qr que al escanearlo se te dirigirá a tu pagina, por lo que puedes</li>
-            </ul>
-        </section>
-
-        <section id="projects">
-            <h2>Mis Proyectos</h2>
-
-            <div class="project-card">
-                <h3>Papi Quiero Pizza Ya</h3>
-                <p>Diseño y desarrollo de la página web para la pizzería familiar, implementando un sistema de pedidos en línea, otro para registrar lo vendido para luego descargarlo en un archivo exel; y un ultimo para llevar el conteo de cuanto debe cada mesa.</p>
-                <a href="https://papiquieropizzaya.com/" target="_blank">Ver Proyecto</a>
-            </div>
-
-            <div class="project-card">
-                <h3>Colsulta Pediatrica En Chile</h3>
-                <p>Buen diseño, loader de inicio, imagenes en carrusel y fondo; links a WhatsAppy para llamar directamente; un link con archivo proporcionado por el cliente para ver hoja su vida en linea, alguinas imagenes fueron proporcionadas por el cliente.</p>
-                <a href="https://stgsrdg.github.io/" target="_blank">Ver Proyecto</a>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contacto</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Si estás interesado en trabajar conmigo o simplemente quieres saludar, ¡contáctame!</p>
-            <div class="buttons">
-                <a href="https://wa.me/573025881859" target="_blank" class="WBtn">WhatsApp</a>
-                <a href="tel:3025881859" target="_blank" class="CBtn">Llamame</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Abel Nicolás Jaimes Orjuela. Todos los derechos reservados.</p>
-        <div class="footer-logos">
-            <a href="https://github.com/Clashroyalo5" target="_blank">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="logo">
-            </a>
-            <a href="https://www.hostinger.com" target="_blank">
-                <img src="https://www.imagensempng.com.br/wp-content/uploads/2023/05/Logo-Hostinger-Png-1024x1024.png" alt="Hostinger" class="logo">
-            </a>
+    <div id="loader-wrapper">
+        <div id="loader">
+            <img src="https://i.pinimg.com/originals/fc/90/dd/fc90dd4f4d2476d0d458ee9c9ca81775.png" alt="Cargando...">
         </div>
-    </footer>
+        <p id="connection-warning" style="display: none;">Verifica tu conexión a internet.</p>
+    </div>
 
+    <div id="content" style="display: none;"></div>
+        <header>
+            <h1>Abel Nicolás Jaimes Orjuela</h1>
+            <p>Desarrollador Web - Creación de páginas web para negocios con movimiento y diseño atractivo</p>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>¿Quién soy?</h2>
+                <p>Desarrollador web especializado en diseños modernos y animaciones para una excelente experiencia de usuario.</p>
+            </section>
+        </main>
+
+            <!-- <div class="carousel-container">
+                <div class="carousel">
+                    <ul>
+    
+                        <li><img src="https://stgsrdg.github.io/img/carousel1.jpg" alt="Imagen 1" ></li>
+    
+                        <li><img src="https://stgsrdg.github.io/img/carousel3.jpg" alt="Imagen 2"></li>
+    
+                        <li><img src="https://stgsrdg.github.io/img/carousel2.jpg" alt="Imagen 3"></li>
+
+    
+                    </ul>
+                </div>
+            </div> -->
+
+        <main
+            <section id="benefits">
+                <h2>Beneficios de trabajar conmigo</h2>
+                <ul>
+                    <li><strong>Atención personalizada</strong>: Responden a tus necesidades.</li>
+                    <li><strong>Diseño atractivo</strong>: Adaptado a todos los dispositivos.</li>
+                    <li><strong>Animaciones</strong>: Mejoran la experiencia del usuario.</li>
+                    <li><strong>Dominio ideal</strong>: Configuran el más adecuado para tu negocio.</li>
+                    <li><strong>Código QR</strong>: Facilita el acceso a tu página.</li>
+                </ul>
+            </section>
+
+            <section id="projects">
+                <h2>Mis Proyectos</h2>
+
+                <div class="project-card">
+                    <h3>Papi Quiero Pizza Ya</h3>
+                    <p>Diseñé y desarrollé la página web de nuestra pizzería, con sistemas para pedidos en línea, registro de ventas exportables a Excel y control de deudas por mesa.</p>
+                    <a href="https://papiquieropizzaya.com/" target="_blank">Ver Proyecto</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Colsulta Pediatrica En Chile</h3>
+                    <p>Diseño atractivo con loader de inicio, carrusel de imágenes, fondo personalizado, enlaces directos a WhatsApp y llamadas, además de un enlace para ver la hoja de vida proporcionada por el cliente. Algunas imágenes también fueron aportadas por él.</p>
+                    <a href="https://stgsrdg.github.io/" target="_blank">Ver Proyecto</a>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contacto</h2>
+                <p style="text-align: center; margin-bottom: 20px;">Si estás interesado en trabajar conmigo o simplemente quieres saludar, ¡contáctame!</p>
+                <div class="buttons">
+                    <a href="https://wa.me/573025881859" target="_blank" class="WBtn">WhatsApp</a>
+                    <a href="tel:3025881859" target="_blank" class="CBtn">Llamame</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Abel Nicolás Jaimes Orjuela. Todos los derechos reservados.</p>
+            <div class="footer-logos">
+                <a href="https://github.com/Clashroyalo5" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="logo">
+                </a>
+                <a href="https://www.hostinger.com" target="_blank">
+                    <img src="https://www.imagensempng.com.br/wp-content/uploads/2023/05/Logo-Hostinger-Png-1024x1024.png" alt="Hostinger" class="logo">
+                </a>
+            </div>
+        </footer>
+    </div>
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/CSSPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/EasePack.min.js"></script> -->
     <script src="script.js"></script>
 </body>
 </html>
