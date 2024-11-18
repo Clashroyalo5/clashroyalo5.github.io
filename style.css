@@ -14,8 +14,8 @@ body {
 header {
     text-align: center;
     padding: 2rem 0;
-    background: #ff6600;
-    color: #fff;
+    background: #1098c2;
+    color: #000000;
 }
 
 main {
@@ -31,7 +31,7 @@ section {
 h2 {
     margin-bottom: 1rem;
     text-align: center;
-    color: #ff6600;
+    color: #1649b9;
 }
 
 ul {
@@ -67,15 +67,16 @@ ul li:hover {
     display: inline-block;
     margin-top: 0.5rem;
     padding: 0.5rem 1rem;
-    background: #ff6600;
+    background: #6943f0;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
-    transition: background 0.3s;
+    transition: transform 0.3s, background 0.3s;
 }
 
 .project-card a:hover {
-    background: #cc5200;
+    background: #5429ee;
+    transform: scale(1.05);
 }
 
 .buttons {
@@ -96,7 +97,7 @@ ul li:hover {
 
 .WBtn:hover {
     background: #2ad12a;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .CBtn {
@@ -105,12 +106,12 @@ ul li:hover {
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
     text-decoration: none;
-    transition: transform 0.3s, background 0.3s;
+    transition: transform 0.3s, background 0.3s; 
 }
 
 .CBtn:hover {
     background: #4e90c7;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 footer {
@@ -181,5 +182,86 @@ footer {
 
     .btn {
         padding: 0.7rem 1.2rem;
+    }
+}
+
+/* Oculta el contenido hasta que se complete la carga */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e90c7;
+    background-repeat: repeat; 
+    background-size: cover; 
+    background-position: center; 
+      background-attachment: fixed;
+    z-index: 9999;
+    transition: transform 1s ease-in-out; /* Transición suave hacia arriba */
+}
+
+#loader img {
+    width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: 100px;
+    animation: spin infinite 1s linear;
+    border-radius: 9999px;
+}
+
+/* Texto de advertencia de conexión */
+#connection-warning {
+    margin-top: 20px;
+    font-size: 18px;
+    color: red;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Animación de giro infinito */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.carousel {
+    max-width: 60%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 14px;
+}
+
+.carousel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.carousel ul li {
+    flex: 0 0 auto;
+    width: 100%; /* Asegura que cada imagen ocupe el 100% del ancho */
+}
+
+.carousel img {
+    width: 100%;
+    display: block;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+@media (min-width: 768px) {
+    .carousel {
+        width: 42%;
     }
 }
