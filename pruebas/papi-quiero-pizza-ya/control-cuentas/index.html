@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control De Cuentas</title>
+    <link rel="shortcut icon" href="https://papiquieropizzaya.com/Icon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .mesa {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .mesa h2 {
+            margin-top: 0;
+        }
+        .mesa input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .mesa button {
+            padding: 5px 10px;
+            margin-right: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .mesa button.pago {
+            background-color: #dc3545;
+        }
+        .mesa button:hover {
+            background-color: #218838;
+        }
+        .mesa button.pago:hover {
+            background-color: #c82333;
+        }
+        .mesa .total {
+            font-weight: bold;
+        }
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #loginForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        #loginForm input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #loginForm button {
+            padding: 10px;
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #loginForm button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loginOverlay">
+    <div id="loginForm">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="username" placeholder="Usuario" onkeydown="if(event.key === 'Enter') document.getElementById('password').focus()">
+        <input type="password" id="password" placeholder="Contraseña" onkeydown="if(event.key === 'Enter') login()">
+        <button onclick="login()">Entrar</button>
+    </div>
+</div>
+
+<h1>Control De Cuentas</h1>
+
+<div class="grid-container" id="mainContent" style="display:none;">
+    <!-- Mesas -->
+    <div class="mesa" id="mesa1">
+        <h2>Mesa 1</h2>
+        <input type="number" id="input1" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(1)">
+        <button onclick="sumar(1)">Agregar</button>
+        <button class="pago" onclick="resetear(1)">Pagó</button>
+        <p>Total: <span class="total" id="total1">$0</span></p>
+    </div>
+
+    <div class="mesa" id="mesa2">
+        <h2>Mesa 2</h2>
+        <input type="number" id="input2" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(2)">
+        <button onclick="sumar(2)">Agregar</button>
+        <button class="pago" onclick="resetear(2)">Pagó</button>
+        <p>Total: <span class="total" id="total2">$0</span></p>
+    </div>
+
+    <div class="mesa" id="mesa3">
+        <h2>Mesa 3</h2>
+        <input type="number" id="input3" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(3)">
+        <button onclick="sumar(3)">Agregar</button>
+        <button class="pago" onclick="resetear(3)">Pagó</button>
+        <p>Total: <span class="total" id="total3">$0</span></p>
+    </div>
+
+    <div class="mesa" id="mesa4">
+        <h2>Mesa 4</h2>
+        <input type="number" id="input4" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(4)">
+        <button onclick="sumar(4)">Agregar</button>
+        <button class="pago" onclick="resetear(4)">Pagó</button>
+        <p>Total: <span class="total" id="total4">$0</span></p>
+    </div>
+
+    <div class="mesa" id="mesa5">
+        <h2>Mesa 5</h2>
+        <input type="number" id="input5" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(5)">
+        <button onclick="sumar(5)">Agregar</button>
+        <button class="pago" onclick="resetear(5)">Pagó</button>
+        <p>Total: <span class="total" id="total5">$0</span></p>
+    </div>
+
+    <div class="mesa" id="mesa6">
+        <h2>Mesa 6</h2>
+        <input type="number" id="input6" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(6)">
+        <button onclick="sumar(6)">Agregar</button>
+        <button class="pago" onclick="resetear(6)">Pagó</button>
+        <p>Total: <span class="total" id="total6">$0</span></p>
+    </div>
+
+    <!-- Otros -->
+    <div class="mesa" id="otro1">
+        <h2>Otro 1</h2>
+        <input type="number" id="input7" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(7)">
+        <button onclick="sumar(7)">Agregar</button>
+        <button class="pago" onclick="resetear(7)">Pagó</button>
+        <p>Total: <span class="total" id="total7">$0</span></p>
+        <input type="checkbox" id="domicilio1" onchange="toggleDomicilio(1)"> Domicilio
+        <div id="domicilioInput1" style="display: none;">
+            <input type="number" id="domicilioMonto1" placeholder="Monto domicilio" onkeydown="if(event.key === 'Enter') agregarDomicilio(1)">
+        </div>
+    </div>
+
+    <div class="mesa" id="otro2">
+        <h2>Otro 2</h2>
+        <input type="number" id="input8" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(8)">
+        <button onclick="sumar(8)">Agregar</button>
+        <button class="pago" onclick="resetear(8)">Pagó</button>
+        <p>Total: <span class="total" id="total8">$0</span></p>
+        <input type="checkbox" id="domicilio2" onchange="toggleDomicilio(2)"> Domicilio
+        <div id="domicilioInput2" style="display: none;">
+            <input type="number" id="domicilioMonto2" placeholder="Monto domicilio" onkeydown="if(event.key === 'Enter') agregarDomicilio(2)">
+        </div>
+    </div>
+
+    <div class="mesa" id="otro3">
+        <h2>Otro 3</h2>
+        <input type="number" id="input9" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(9)">
+        <button onclick="sumar(9)">Agregar</button>
+        <button class="pago" onclick="resetear(9)">Pagó</button>
+        <p>Total: <span class="total" id="total9">$0</span></p>
+        <input type="checkbox" id="domicilio3" onchange="toggleDomicilio(3)"> Domicilio
+        <div id="domicilioInput3" style="display: none;">
+            <input type="number" id="domicilioMonto3" placeholder="Monto domicilio" onkeydown="if(event.key === 'Enter') agregarDomicilio(3)">
+        </div>
+    </div>
+
+    <div class="mesa" id="otro4">
+        <h2>Otro 4</h2>
+        <input type="number" id="input10" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(10)">
+        <button onclick="sumar(10)">Agregar</button>
+        <button class="pago" onclick="resetear(10)">Pagó</button>
+        <p>Total: <span class="total" id="total10">$0</span></p>
+        <input type="checkbox" id="domicilio4" onchange="toggleDomicilio(4)"> Domicilio
+        <div id="domicilioInput4" style="display: none;">
+            <input type="number" id="domicilioMonto4" placeholder="Monto domicilio" onkeydown="if(event.key === 'Enter') agregarDomicilio(4)">
+        </div>
+    </div>
+
+    <div class="mesa" id="otro5">
+        <h2>Otro 5</h2>
+        <input type="number" id="input11" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(11)">
+        <button onclick="sumar(11)">Agregar</button>
+        <button class="pago" onclick="resetear(11)">Pagó</button>
+        <p>Total: <span class="total" id="total11">$0</span></p>
+        <input type="checkbox" id="domicilio5" onchange="toggleDomicilio(5)"> Domicilio
+        <div id="domicilioInput5" style="display: none;">
+            <input type="number" id="domicilioMonto5" placeholder="Monto domicilio" onkeydown="if(event.key === 'Enter') agregarDomicilio(5)">
+        </div>
+    </div>
+
+    <div class="mesa" id="otro6">
+        <h2>Otro 6</h2>
+        <input type="number" id="input12" placeholder="Ingrese monto" onkeydown="if(event.key === 'Enter') sumar(12)">
+        <button onclick="sumar(12)">Agregar</button>
+        <button class="pago" onclick="resetear(12)">Pagó</button>
+        <p>Total: <span class="total" id="total12">$0</span></p>
+        <input type="checkbox" id="domicilio6" onchange="toggleDomicilio(6)"> Domicilio
+        <div id="domicilioInput6" style="display: none;">
+            <input type="number" id="domicilioMonto6" placeholder="Monto domicilio" onkeydown="if(event.key === 'Enter') agregarDomicilio(6)">
+        </div>
+    </div>
+</div>
+
+<script>
+    const users = {
+        "admin": "admin",
+        "kali": "kali",
+        "sergio": "macla4serabel",
+        "clara": "Dios",
+        "maria": "1234",
+        "abel": "654852"
+    };
+
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if (users[username] && users[username] === password) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'grid';
+        } else {
+            alert('Usuario o contraseña incorrectos');
+        }
+    }
+
+    function sumar(mesa) {
+        const input = document.getElementById(`input${mesa}`);
+        const totalElement = document.getElementById(`total${mesa}`);
+        let total = parseFloat(totalElement.innerText.replace(/[$,.]/g, ''));
+        const monto = parseFloat(input.value);
+
+        if (!isNaN(monto)) {
+            total += monto;
+            totalElement.innerText = formatCurrency(total);
+        }
+        input.value = '';
+    }
+
+    function resetear(mesa) {
+        document.getElementById(`total${mesa}`).innerText = '$0';
+        if (document.getElementById(`domicilioMonto${mesa}`)) {
+            document.getElementById(`domicilioMonto${mesa}`).value = '';
+        }
+    }
+
+    function toggleDomicilio(mesa) {
+        const domicilioInput = document.getElementById(`domicilioInput${mesa}`);
+        domicilioInput.style.display = domicilioInput.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function agregarDomicilio(mesa) {
+        const domicilioMonto = document.getElementById(`domicilioMonto${mesa}`);
+        const monto = parseFloat(domicilioMonto.value);
+        if (!isNaN(monto)) {
+            sumar(mesa);
+        }
+    }
+
+    function formatCurrency(amount) {
+        return '$' + amount.toLocaleString('es-ES');
+    }
+</script>
+
+</body>
+</html>
