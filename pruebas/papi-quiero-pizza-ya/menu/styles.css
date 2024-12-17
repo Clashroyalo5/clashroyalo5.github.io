@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+html {
+    font-size: 250%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+body {
+    background-color: #2e2e2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 55px 128px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 55px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    min-width: 100;
+}
+
+li {
+    list-style-type: none;
+}
+
+h1 {
+    
+    text-align: center;
+    color: antiquewhite;
+}
+
+.im {
+    width: 100%;
+    height: 100%;
+}
