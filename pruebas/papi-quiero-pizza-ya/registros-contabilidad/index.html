@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://papiquieropizzaya.com/Icon.png">
+    <title>Registro de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #fff2d7;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 24px); /* Espaciado correcto */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        /* Asegurar que los inputs dentro de las celdas se ajusten al 100% */
+        td input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .actions button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #0069d9;
+        }
+
+        .actions .delete {
+            background-color: #dc3545;
+        }
+
+        .actions .delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro de Productos</h1>
+
+        <label for="product">Producto</label>
+        <input type="text" id="product" placeholder="Nombre del producto" required>
+
+        <label for="price">Precio</label>
+        <input type="text" id="price" placeholder="Precio del producto" required oninput="formatPriceInput(this)">
+
+        <button onclick="addProduct()">Agregar producto</button>
+        <button onclick="downloadExcel()">Descargar Excel</button>
+
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let products = [];
+
+        // Función para formatear el precio con puntos de miles
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Función para formatear el valor del campo de entrada mientras se escribe
+        function formatPriceInput(input) {
+            let value = input.value.replace(/\./g, ''); // Eliminar puntos existentes
+            input.value = formatPrice(value); // Aplicar formato con puntos de miles
+        }
+
+        function addProduct() {
+            const product = document.getElementById("product").value;
+            let price = document.getElementById("price").value.replace(/\./g, ''); // Eliminar puntos al guardar el valor
+
+            if (product && price) {
+                price = parseInt(price); // Convertir a número
+                products.push({ product, price });
+                renderTable();
+                document.getElementById("product").value = '';
+                document.getElementById("price").value = '';
+            } else {
+                alert('Por favor, completa ambos campos.');
+            }
+        }
+
+        function renderTable() {
+            const tableBody = document.querySelector("#productTable tbody");
+            tableBody.innerHTML = "";
+
+            products.forEach((item, index) => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td><input type="text" value="${item.product}" onchange="editProduct(${index}, 'product', this.value)"></td>
+                    <td><input type="text" value="${formatPrice(item.price)}" onchange="editProduct(${index}, 'price', this.value)" oninput="formatPriceInput(this)"></td>
+                    <td class="actions">
+                        <button class="delete" onclick="deleteProduct(${index})">Eliminar</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function editProduct(index, field, value) {
+            if (field === 'price') {
+                // Quitar los puntos antes de actualizar el valor de precio
+                value = value.replace(/\./g, '');
+            }
+            products[index][field] = value;
+            renderTable();
+        }
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            renderTable();
+        }
+
+        function downloadExcel() {
+            let csvContent = "data:text/csv;charset=utf-8,Producto;Precio\n"; // Usamos punto y coma como separador
+
+            // Generar contenido CSV correctamente formateado
+            products.forEach(product => {
+                // En el archivo CSV, el precio va sin puntos
+                csvContent += `${product.product};${product.price}\n`;
+            });
+
+            // Generar nombre de archivo con la fecha actual
+            const date = new Date();
+            const filename = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}.csv`;
+
+            // Descargar el archivo CSV
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", filename);
+            document.body.appendChild(link);
+
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+</body>
+</html>
