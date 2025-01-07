@@ -1,35 +1,45 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #eaf4e3;
+    color: #333;
 }
+
 header {
-    background: #333;
+    background: #2e7d32; /* Verde oscuro */
     color: #fff;
     padding: 1rem 0;
     text-align: center;
 }
+
 .container {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+    max-width: 1200px;
     overflow: hidden;
 }
+
 nav {
     display: flex;
     justify-content: space-around;
     padding: 1rem 0;
-    background: #444;
+    background: #43a047; /* Verde medio */
 }
+
 nav a {
     color: #fff;
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
+
 nav a:hover {
-    background: #555;
+    background: #66bb6a; /* Verde claro */
+    border-radius: 5px;
 }
+
 .hero {
     background: url('https://example.com/hero.jpg') no-repeat center center/cover;
     height: 300px;
@@ -40,39 +50,80 @@ nav a:hover {
     justify-content: center;
     flex-direction: column;
 }
+
 .hero h1 {
     font-size: 3rem;
     margin: 0;
+    color: #43a047;
 }
+
 .hero p {
     font-size: 1.2rem;
+    color: #66bb6a;
 }
-.about, .products, .contact {
+
+
+
+
+/* About, Products, Contact Sections */
+section {
     padding: 2rem 0;
 }
-.about h2, .products h2, .contact h2 {
+
+h2 {
     text-align: center;
     margin-bottom: 1rem;
+    color: #2e7d32;
 }
-.about p, .contact p {
-    text-align: center;
-}
+
 .products .product-list {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 3rem;
 }
+
 .product {
     background: #fff;
-    margin: 1rem;
     padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
     flex: 1 1 calc(33% - 2rem);
     box-sizing: border-box;
+    text-align: center;
 }
+
+.product:hover {
+    transform: scale(1.1);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product {
+        flex: 1 1 100%;
+    }
+    .product:focus-within {
+        transform: scale(0.7);
+    }
+    .hero h1 {
+        margin-top: 20px !important;
+    }
+}
+
 footer {
-    background: #333;
+    background: #2e7d32;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
+}
+
+.contact-container p {
+    text-align: center;
 }
