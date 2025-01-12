@@ -4,12 +4,18 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #eaf4e3;
-    color: #333;
+    background: url('fondo.png');
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*linear-gradient(135deg, #8bffe2, #6fff6a, #adff99);*/
+    
+
 }
 
 header {
-    background: #2e7d32; /* Verde oscuro */
+    background: #3ab441;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
@@ -19,29 +25,35 @@ header {
     width: 90%;
     margin: 0 auto;
     max-width: 1200px;
-    overflow: hidden;
 }
 
-nav {
+nav ul {
+    list-style: none;
     display: flex;
-    justify-content: space-around;
-    padding: 1rem 0;
-    background: #43a047; /* Verde medio */
+    justify-content: center;
+    padding: 0;
+    background: #2e7d32;
+    margin: 0;
 }
 
-nav a {
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
     color: #fff;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    display: block;
 }
 
-nav a:hover {
-    background: #66bb6a; /* Verde claro */
+nav ul li a:hover {
+    background: #66bb6a;
     border-radius: 5px;
 }
 
 .hero {
-    background: url('https://example.com/hero.jpg') no-repeat center center/cover;
+    background: url('') no-repeat center center/cover;
     height: 300px;
     text-align: center;
     color: #fff;
@@ -54,16 +66,14 @@ nav a:hover {
 .hero h1 {
     font-size: 3rem;
     margin: 0;
-    color: #43a047;
+    text-shadow: 2px 2px 5px #000;
 }
 
 .hero p {
     font-size: 1.2rem;
-    color: #66bb6a;
+    color: #f0f0f0;
+    text-shadow: 5px 5px 5px #000;
 }
-
-
-
 
 /* About, Products, Contact Sections */
 section {
@@ -80,50 +90,136 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .product {
     background: #fff;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1 1 calc(33% - 2rem);
-    box-sizing: border-box;
     text-align: center;
+    border-radius: 5px;
 }
 
 .product:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .product img {
     width: 100%;
     height: auto;
-    max-width: 250px;
-    object-fit: cover;
+    max-width: 200px;
+    margin-bottom: 1rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .product {
-        flex: 1 1 100%;
-    }
-    .product:focus-within {
-        transform: scale(0.7);
-    }
-    .hero h1 {
-        margin-top: 20px !important;
-    }
+/* Contact Section */
+.contact-container p {
+    text-align: center;
+    margin: 0.5rem 0;
+    color: #f0f0f0;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 footer {
-    background: #2e7d32;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
 }
 
-.contact-container p {
+.codemate {
+    color: crimson;
+}
+
+.codemate:hover {
+    color: aqua;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .product {
+        flex: 1 1 100%;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    body {
+        background: url('plantes-aromatiques.jpg');
+        background-repeat: repeat; /* Controla si la imagen se repite (opcional) */
+        background-size: cover; /* Controla el tamaño de la imagen (opcional) */
+        background-position: center; /* Controla la posición de la imagen (opcional) */
+          background-attachment: fixed
+    }
+    h1, h2, h3, p {
+        text-align: center;
+        color: black;
+    
+    }.about-container p {
+        text-align: center;
+        margin: 0.5rem 0;
+        color: #000000;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .about-container {
+        margin-left: 0px;
+        margin-right: 0px;
+        color: black;
+    }
+}
+
+.contact-container a {
+    margin-top: 1rem;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 3px;
+    display: block;
+}
+.contact-container a:hover {
+    text-decoration: underline;
+    color: #66bb6a;
+}
+
+.about-container p {
     text-align: center;
+    margin: 0.5rem 0;
+    color: #f0f0f0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.about-container {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.carousel {
+    max-width: 60%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 14px;
+}
+
+.carousel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.carousel ul li {
+    flex: 0 0 auto;
+    width: 100%; /* Asegura que cada imagen ocupe el 100% del ancho */
+}
+
+.carousel img {
+    width: 100%;
+    display: block;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
