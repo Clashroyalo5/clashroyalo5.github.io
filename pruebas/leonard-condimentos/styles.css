@@ -1,10 +1,48 @@
+/* Oculta el contenido hasta que se complete la carga */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #365c46;
+    z-index: 9999;
+    transition: transform 1s ease-in-out; /* Transición suave hacia arriba */
+}
+
+#loader img {
+    width: 200px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: 200px;
+    animation: spin infinite 2s linear;
+    border-radius: 100px;
+}
+
+/* Texto de advertencia de conexión */
+#connection-warning {
+    margin-top: 20px;
+    font-size: 18px;
+    color: rgb(201, 89, 253);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Animación de giro infinito */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: url('fondo.png');
+    background: url('img/fondo.png');
     background-size: 100%;
     background-attachment: fixed;
     background-position: center;
@@ -15,7 +53,7 @@ body {
 }
 
 header {
-    background: #3ab441;
+    background: linear-gradient(135deg, #024905, #3ab441);
     color: #fff;
     padding: 1rem 0;
     text-align: center;
@@ -32,7 +70,7 @@ nav ul {
     display: flex;
     justify-content: center;
     padding: 0;
-    background: #2e7d32;
+    background: linear-gradient(135deg, #4a9e6d, #1a7440);
     margin: 0;
 }
 
@@ -93,22 +131,81 @@ h2 {
     gap: 2rem;
 }
 
-.product {
-    background: #fff;
+.product1 {
+    background: linear-gradient(135deg, #d3d3d3, #b9b9b9);
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1 1 calc(33% - 2rem);
     text-align: center;
     border-radius: 5px;
 }
 
-.product:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+
+.product1 img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+.product2 {
+    background: linear-gradient(135deg, #e49852, #c49f39);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33% - 2rem);
+    text-align: center;
+    border-radius: 5px;
 }
 
-.product img {
+
+.product2 img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+.product3 {
+    background: linear-gradient(135deg, #75b679, #47bd4d);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33% - 2rem);
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+.product3 img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+.product4 {
+    background: linear-gradient(135deg, #8d8369, #a79547);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33% - 2rem);
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+.product4 img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+.product5 {
+    background: linear-gradient(135deg, #924430, #f05656);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33% - 2rem);
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+.product5 img {
     width: 100%;
     height: auto;
     max-width: 200px;
@@ -137,37 +234,11 @@ footer {
     color: aqua;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .product {
-        flex: 1 1 100%;
-    }
-    nav ul {
-        flex-direction: column;
-    }
-    body {
-        background: url('plantes-aromatiques.jpg');
-        background-repeat: repeat; /* Controla si la imagen se repite (opcional) */
-        background-size: cover; /* Controla el tamaño de la imagen (opcional) */
-        background-position: center; /* Controla la posición de la imagen (opcional) */
-          background-attachment: fixed
-    }
-    h1, h2, h3, p {
-        text-align: center;
-        color: black;
-    
-    }.about-container p {
-        text-align: center;
-        margin: 0.5rem 0;
-        color: #000000;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-    .about-container {
-        margin-left: 0px;
-        margin-right: 0px;
-        color: black;
-    }
+.about-container {
+    margin-left: 200px;
+    margin-right: 200px;
 }
+
 
 .contact-container a {
     margin-top: 1rem;
@@ -187,13 +258,10 @@ footer {
     color: #f0f0f0;
     background-color: rgba(0, 0, 0, 0.7);
 }
-.about-container {
-    margin-left: 200px;
-    margin-right: 200px;
-}
+
 
 .carousel {
-    max-width: 60%;
+    max-width: 45%;
     overflow: hidden;
     position: relative;
     border-radius: 14px;
@@ -222,4 +290,54 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .product {
+        flex: 1 1 100%;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    body {
+        background: url('img/plantes-aromatiques.jpg');
+        background-repeat: repeat; /* Controla si la imagen se repite (opcional) */
+        background-size: cover; /* Controla el tamaño de la imagen (opcional) */
+        background-position: center; /* Controla la posición de la imagen (opcional) */
+          background-attachment: fixed
+    }
+    p {
+        text-align: center;
+        color: rgb(0, 0, 0);
+    
+    }
+
+    .about-container p {
+        text-align: center;
+        margin: 0.5rem 0;
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .about-container {
+        margin-left: 0px;
+        margin-right: 0px;
+        color: black;
+    }
+    .carousel {
+        max-width: 80%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 14px;
+    }
+    #loader img {
+        width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+        height: 100px;
+        animation: spin infinite 1s linear;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: #122713;
+    }
 }
