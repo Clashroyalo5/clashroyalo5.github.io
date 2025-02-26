@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linea Arquitectónica</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div ref="loaderWrapper" id="loader-wrapper" v-if="showLoader">
+        <div id="loader">
+          <img src="./img/loader.png" alt="Cargando..." />
+        </div>
+        <p id="connection-warning" v-if="showWarning">Verifica tu conexión a internet.</p>
+      </div>
+<div id="content" style="display: block;">
+    <nav id="navbar" class="navbar">
+        <div class="logo">
+            <a href="#">
+                <img src="https://pintuland.com.co/wp-content/uploads/2022/06/logo-pintuland-footer-248x53.png" alt="Logo" class="logo-img">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><strong><a href="/#quienessomos">Quienes Somos</a></strong></li>                
+            <li><strong><a href="/#queofrecemos">Que Ofrecemos</a></strong></li>
+            <li><strong><a id="productsBtn" target="_parent">Productos</a></strong></li>
+            <li><strong><a href="/#ubicacion">Ubicación</a></strong></li>                
+            <li><strong><a href="/#about">Contacto</a></strong></li>
+
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+<div id="productsModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Nuestros Productos</h2>
+        <a href=""><strong>Linea Industrial</strong></a>
+        <a href=""><strong>Linea Madera</strong></a>
+        <a href=""><strong>Linea Automotriz</strong></a>
+        <a href=""><strong>Otro</strong></a>
+    </div>
+</div>
+    <div class="product-grid">
+        <div class="product-card">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_883961-MCO79060617333_092024-O.webp" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo acrílico PINTULAND, uso exterior</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://pintuland.com.co/wp-content/uploads/2020/07/Vinilo_Superlavable_Tipo_1_pintuland.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T1SL PINTULAND super lavable, uso exterior e interior</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://pintuland.com.co/wp-content/uploads/2020/07/Vinilo_Lavable_Tipo_2_pintuland.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T2  PINTULAND lavable, uso interior</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://pintuland.com.co/wp-content/uploads/2020/07/Vinilo_Corriente_Tipo_3_pintuland.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T3 PINTULAND, uso interior, techos y paredes</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="http://www.pinturassuper.com/wp-content/uploads/2022/05/vinilo-2-pgweb.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T2 SUPER, uso interior</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="./img/t1pintutel.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T1 PINTUTEL</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="./img/t2pintutel.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T2 PINTUTEL</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="./img/t3pintutel.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Vinilo T3 PINTUTEL</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://pintuland.com.co/wp-content/uploads/2020/07/Esmalte_Linea_Clasica_pintuland_web.webp" alt="Producto" class="product-image" />
+        <p class="product-name">Esmalte de uso exterior e interior 3 en 1 PINTULAND</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="http://www.pinturassuper.com/wp-content/uploads/2020/10/Esmalte-3-en-1.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Esmalte de uso exterior e interior 3 en 1 SUPER</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://store.pinturasevery.com/media/catalog/product/cache/45670b8ee0678ac16998ca7b1275ed9a/e/s/esmalte-plus-3en1_1.png" alt="Producto" class="product-image" />
+        <p class="product-name">Esmalte de uso exterior e interior 3 en 1 EVERY</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://pintuland.com.co/wp-content/uploads/2024/04/Esmalte_Protekland.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Esmalte de uso exterior e interior 2 en 1 PINTULAND</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="http://www.pinturassuper.com/wp-content/uploads/2017/11/pinturas-super-linea-arquitectonica.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Esmalte de uso exterior e interior 2 en 1 SUPER</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://store.pinturasevery.com/media/catalog/product/cache/45670b8ee0678ac16998ca7b1275ed9a/w/h/whatsapp_image_2023-09-12_at_9.47.52_am_1__1_2_1.jpeg" alt="Producto" class="product-image" />
+        <p class="product-name">Esmalte de uso exterior e interior 2 en 1 EVERY</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://pintuland.com.co/wp-content/uploads/2020/07/Barniz_Sintetico_pintuland.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Barniz de uso exterior e interior PINTULAND</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="http://www.pinturassuper.com/wp-content/uploads/2017/11/pinturas-super-linea-arquitectonica.jpg" alt="Producto" class="product-image" />
+        <p class="product-name">Barniz de uso exterior e interior SUPER</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://i0.wp.com/construcabalgata.com/wp-content/uploads/2024/09/BARNIZ-EVERY-BRILANTE.webp?fit=417%2C417&ssl=1" alt="Producto" class="product-image" />
+        <p class="product-name">Barniz de uso exterior e interior EVERY</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/124515226_01/w=1500,h=1500,fit=pad" alt="Producto" class="product-image" />
+        <p class="product-name">Impermeabilizante para techos y terrazas, varios colores, 10 años, IMPERZIL</p>
+        </div>
+    
+    
+        <div class="product-card">
+        <img src="https://www.oitproductos.com/_next/image?url=https%3A%2F%2Fstrapi-aws-s3-uploads-bucket.s3.amazonaws.com%2F4_IMPRIZIL_1_2_CUN_4cea214eab.jpg&w=1920&q=75" alt="Producto" class="product-image" />
+        <p class="product-name">Imprimante para impermeabilizante IMPRIZIL</p>
+        </div>
+  </div>
+
+
+  <footer id="about">
+    <p>&copy 2025 Colores Y Casas. Todos los derechos reservados.</p>
+</footer>
+</div>
+<script src="./scripts.js"></script>
+</body>
+</html>
