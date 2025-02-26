@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
 
-    <div ref="loaderWrapper" id="loader-wrapper" v-if="showLoader">
+    <div ref="loaderWrapper" id="loader-wrapper">
         <div id="loader">
           <img src="./img/loader.png" alt="Cargando..." />
         </div>
-        <p id="connection-warning" v-if="showWarning">Verifica tu conexión a internet.</p>
+        <p id="connection-warning">Verifica tu conexión a internet.</p>
       </div>
   <div id="content" style="display: block;">
     <nav id="navbar" class="navbar">
