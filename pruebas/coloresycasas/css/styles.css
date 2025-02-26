@@ -4,6 +4,8 @@
     box-sizing: border-box;
   }
   body {
+    max-width: 100%;
+    overflow-x: hidden;
     background-color: rgb(255, 255, 255);
     font-family: "Poppins", sans-serif;
       font-weight: 100;
@@ -363,3 +365,22 @@
         padding: 40px;
         text-align: center;
     }
+    .carousel {
+        width: 100%; /* Asegura que el carrusel ocupe todo el ancho */
+        overflow: hidden;
+        position: relative;
+        border-radius: 0px;
+    }
+    
+    .carousel-container {
+        margin-top: 74px;
+        width: 100%; /* Asegura que el contenedor del carrusel ocupe todo el ancho */
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
