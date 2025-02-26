@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <div ref="loaderWrapper" id="loader-wrapper" v-if="showLoader">
+    <div ref="loaderWrapper" id="loader-wrapper">
         <div id="loader">
           <img src="./img/loader.png" alt="Cargando..." />
         </div>
-        <p id="connection-warning" v-if="showWarning">Verifica tu conexión a internet.</p>
+        <p id="connection-warning">Verifica tu conexión a internet.</p>
       </div>
 <div id="content" style="display: block;">
     <nav id="navbar" class="navbar">
@@ -21,6 +21,7 @@
             </a>
         </div>
         <ul class="nav-links">
+            <li><strong><a href="/">Inicio</a></strong></li>
             <li><strong><a href="/#quienessomos">Quienes Somos</a></strong></li>                
             <li><strong><a href="/#queofrecemos">Que Ofrecemos</a></strong></li>
             <li><strong><a id="productsBtn" target="_parent">Productos</a></strong></li>
