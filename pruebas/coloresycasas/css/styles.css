@@ -48,35 +48,39 @@
     text-align: center;
   }
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(248, 143, 44);
-    padding: 10px 20px;
-    position: fixed; /* Cambiado a fixed para que se mantenga visible */
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Asegura que la navbar esté por encima de otros elementos */
-    transition: top 0.3s; /* Añade una transición suave para mostrar/ocultar la navbar */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(248, 143, 44);
+        padding: 10px 20px;
+        position: fixed; /* Cambiado a fixed para que se mantenga visible */
+        top: 0;
+        width: 100%;
+        z-index: 1000; /* Asegura que la navbar esté por encima de otros elementos */
+        transition: top 0.3s; /* Añade una transición suave para mostrar/ocultar la navbar */
     }
     
     .navbar-hidden {
-    top: -100px; /* Ajusta este valor según la altura de tu navbar */
+        top: -100px; /* Ajusta este valor según la altura de tu navbar */
     }
     
     .logo img {
-    height: 50px; /* Ajusta el tamaño del logo aquí */
+        height: 50px; /* Ajusta el tamaño del logo aquí */
     }
     
     .nav-links {
-    list-style: none;
-    display: flex;
+        list-style: none;
+        display: flex;
     }
     
     .nav-links li {
-    margin-left: 20px;
+        margin-left: 20px;
     }
     
+    .nav-links .lia {
+        margin-left: 20px;
+    }
+
     .nav-links a {
     color: rgb(116, 13, 13);
     text-decoration: none;
@@ -168,6 +172,10 @@
     .nav-links li {
         opacity: 0;
         margin-bottom: 30px; /* Añade más separación entre los elementos */
+    }
+
+    .nav-links .lia {
+        margin-left: 10px;
     }
     
     .burger {
