@@ -109,7 +109,7 @@ header nav ul li a:hover {
 }
 
 .hero-content {
-    background-color: rgba(0,0,0,0.5); /* Fondo semi-transparente para legibilidad */
+    background-color: rgba(0,0,0,0); /* Fondo semi-transparente para legibilidad */
     padding: 30px;
     border-radius: 8px;
     max-width: 700px;
@@ -181,6 +181,7 @@ header nav ul li a:hover {
 .section {
     padding: 60px 0;
     text-align: center;
+    background-color: white;
 }
 
 .section h2 {
@@ -201,6 +202,7 @@ header nav ul li a:hover {
 
 .bg-light {
     background-color: var(--bg-light);
+    background-color: white;
 }
 
 /* Promociones */
