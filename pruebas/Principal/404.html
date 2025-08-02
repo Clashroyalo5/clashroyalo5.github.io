@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página No Encontrada</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="https://papiquieropizzaya.com/Icon.png" type="image/x-icon">
+    <style>
+        body {
+            background-color: #F9E0AE;
+            font-family: 'Comic Sans MS', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        .pizza {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 10s linear infinite;
+            width: 150px;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        h1 {
+            font-size: 8rem;
+            color: #D35400;
+            animation: slideDown 1s ease-in-out forwards;
+            opacity: 0;
+            margin: 0;
+        }
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        p {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 20px 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        a {
+            text-decoration: none;
+            color: #E74C3C;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #F5B041;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: popIn 3s ease-in-out forwards;
+            opacity: 0;
+        }
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        a:hover {
+            background-color: #E67E22;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://papiquieropizzaya.com/pizza.png" alt="Pizza" class="pizza">
+        <h1>404</h1>
+        <p>¡Oops! Parece que esta página no tiene sabor...</p>
+        <a href="/">Volver a la página principal</a>
+    </div>
+</body>
+</html>

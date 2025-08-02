@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Haz tu pedido en linea</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hola, Pizzas En Leña Con Borde Relleno De Queso, Son Unicas, Son Diferentes" />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="Abel Nicolás Jaimes Orjuela" />
+    <meta name="keywrods" content="papiquieropizzaya, Papi Quiero Pizza Ya, Papi quiero pizza ya, papi quiero pizza, Papi quiero pizza, Papi Quiero Pizza, Chinácota, chinácota, Chinacota, chinacota, Pizza Chinácota, Pizza chinácota, Pizza Chinacota, Pizza chinacota, pizza Chinácota, pizza chinácota, pizza Chinacota, pizza chinacota" />
+    <link rel="icon" href="https://papiquieropizzaya.com/Icon.png">
+    <meta name="google-site-verification" content="WfiA4hGyjafIAhHt9pbjUjHsb3ArnhuDPosnt4M6rSk" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff2d7;
+        }
+        a {
+            color: aqua;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: crimson;
+            background-color: rgba(0, 0, 0, 1);
+            text-decoration: none;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%; /* Ajusta el ancho al 90% del contenedor para mantener consistencia */
+            box-sizing: border-box;
+        }
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.5s;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px; /* Ajusta para tablets */
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 600px; /* Ajusta para desktops */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2><a href="/"><---</a></h2>
+
+    <h3>Pedido de Pizzas</h3>
+
+    <label for="tamano">¿Qué tamaño de pizza deseas?</label>
+    <select id="tamano">
+        <option value="">Selecciona un tamaño</option>
+        <option value="pequena">Pequeña</option>
+        <option value="mediana">Mediana</option>
+        <option value="grande">Grande</option>
+    </select>
+
+    <label for="numSabores">¿Cuántos sabores deseas?</label>
+    <select id="numSabores">
+        <option value="">Selecciona una opción</option>
+        <option value="1">1 sabor</option>
+        <option value="2">2 sabores</option>
+    </select>
+
+    <div id="saboresContainer"></div>
+
+    <label for="domicilio">¿Deseas domicilio?</label>
+    <select id="domicilio">
+        <option value="no">No</option>
+        <option value="si">Sí</option>
+    </select>
+
+    <div id="direccionContainer" style="display: none;">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" placeholder="Ingresa la dirección">
+    </div>
+
+    <label for="extra">¿Qué más deseas?</label>
+    <textarea id="extra" placeholder="Escribe algo extra..."></textarea>
+
+    <label for="fecha">¿Para cuándo lo deseas?</label>
+    <input type="datetime-local" id="fecha">
+    <label for="rapido" >
+        <input type="checkbox" id="rapido"> Lo más rápido posible
+    </label>
+
+    <button id="whatsappBtn" class="button">Enviar pedido por WhatsApp</button>
+</div>
+
+<script>
+    const saboresContainer = document.getElementById('saboresContainer');
+    const numSabores = document.getElementById('numSabores');
+    const domicilio = document.getElementById('domicilio');
+    const direccionContainer = document.getElementById('direccionContainer');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const tamano = document.getElementById('tamano');
+    const fechaInput = document.getElementById('fecha');
+    const rapido = document.getElementById('rapido');
+
+    const pizzas = ['Margarita', 'Bocadillo', 'Jamon', 'Vegetariana', 'Hawaiana','Campesina', 'Peperoni', 'Mexicana', '4 Estaciones', 'Cerro de la Vieja', 'Mejue', 'Salami', 'Children', 'La Casa','Socavon', 'La Colorada', 'Marinera', 'Puente Rojo', 'El Parche', 'Ambrosio Alfinger', 'La Honda', 'Cuatro Quesos', 'Vegana', 'Trio'];
+
+    // Verificar si el día es martes o miércoles para bloquear la página
+    const today = new Date().getDay();
+    if (today === 2 || today === 3) {
+        document.body.innerHTML = '<h1>Estamos cerrados los días martes y miércoles.  <a href="/"> Volver a el inicio </a></h1>';
+    }
+
+    // Restringir selección de días a martes y miércoles
+    fechaInput.addEventListener('input', function () {
+        const selectedDate = new Date(fechaInput.value);
+        if (selectedDate.getDay() === 2 || selectedDate.getDay() === 3) {
+            alert('Los días martes y miércoles no se laboran.');
+            fechaInput.value = '';
+        }
+    });
+
+    // Limitar horas de pedido de 4 pm a 12 am
+    fechaInput.addEventListener('click', function () {
+        const minTime = '16:00';
+        const maxTime = '23:59';
+        fechaInput.min = minTime;
+        fechaInput.max = maxTime;
+    });
+
+    // Manejar la opción de "Lo más rápido posible"
+    rapido.addEventListener('change', function () {
+        if (this.checked) {
+            fechaInput.disabled = true;
+        } else {
+            fechaInput.disabled = false;
+        }
+    });
+
+    numSabores.addEventListener('change', function () {
+        saboresContainer.innerHTML = '';
+        const cantidad = parseInt(this.value);
+
+        for (let i = 0; i < cantidad; i++) {
+            const label = document.createElement('label');
+            label.textContent = `¿Qué sabor de pizza deseas?`;
+
+            const select = document.createElement('select');
+            select.className = 'pizzaSelect';
+
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Selecciona un sabor';
+            select.appendChild(defaultOption);
+
+            pizzas.forEach(pizza => {
+                const option = document.createElement('option');
+                option.value = pizza;
+                option.textContent = pizza;
+                select.appendChild(option);
+            });
+
+            saboresContainer.appendChild(label);
+            saboresContainer.appendChild(select);
+        }
+    });
+
+    domicilio.addEventListener('change', function () {
+        if (this.value === 'si') {
+            direccionContainer.style.display = 'block';
+        } else {
+            direccionContainer.style.display = 'none';
+        }
+    });
+
+    whatsappBtn.addEventListener('click', function () {
+        let sabores = [];
+        document.querySelectorAll('.pizzaSelect').forEach(select => {
+            if (select.value) sabores.push(select.value);
+        });
+
+        const tamaño = tamano.value;
+        const domicilioSeleccionado = domicilio.value;
+        const direccion = document.getElementById('direccion').value;
+        const extra = document.getElementById('extra').value;
+        const fecha = fechaInput.value;
+        const fechaMensaje = rapido.checked
+            ? 'lo más rápido posible'
+            : `para la fecha ${new Date(fecha).toLocaleDateString()} a las ${new Date(fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}`;
+
+        let mensaje = `Hola, Necesito una pizza ${tamaño} con ${sabores.length} sabor(es): ${sabores.join(', ')}.`;
+
+        if (domicilioSeleccionado === 'si') {
+            mensaje += ` La necesito con domicilio en: ${direccion}.`;
+        } else if (direccion) {
+            mensaje += ` La necesito en la dirección: ${direccion}.`;
+        }
+
+        if (extra) {
+            mensaje += ` Además, quiero: ${extra}.`;
+        }
+
+        mensaje += ` ${fechaMensaje}.`;
+
+        // Adaptar la URL de WhatsApp para que funcione en móvil y PC
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const whatsappUrl = isMobile
+            ? `https://wa.me/573123747146?text=${encodeURIComponent(mensaje)}`
+            : `https://web.whatsapp.com/send?phone=573123747146&text=${encodeURIComponent(mensaje)}`;
+
+        window.open(whatsappUrl, '_blank');
+    });
+</script>
+
+</body>
+</html>

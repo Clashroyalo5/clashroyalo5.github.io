@@ -1,0 +1,154 @@
+setsc 6
+cs
+windowdelete [button]
+setpc 4
+setpensize [8 8]
+pu
+rt 180
+fd 300
+lt 90
+pd
+fd 300
+lt 90
+fd 600
+lt 90
+fd 200
+pu
+fd 100
+pd
+fd 300
+lt 90
+fd 600
+lt 90
+fd 200
+pu
+fd 300
+lt 90
+pd
+fd 100
+lt 90
+pu
+fd 100
+pd
+fd 200
+pu
+fd 100
+pd 
+fd 100
+rt 90
+fd 100
+rt 90
+pu
+fd 100
+pd
+fd 100
+pu
+fd 100
+pd
+fd 200
+pu 
+fd 100
+lt 90
+fd 100
+lt 90
+fd 200
+pd
+fd 300
+pu 
+fd 100
+pd
+rt 90
+fd 100
+rt 90
+fd 100
+pu
+lt 90
+fd 100
+rt 90
+pd
+fd 100
+pu
+fd 200
+pd
+fd 100
+rt 90
+pu
+fd 100
+pd
+fd 200
+pu
+fd 100
+pd
+fd 100
+rt 90
+fd 100
+rt 90
+
+
+
+pu
+fd 300
+pd 
+fd 200
+pu
+fd 100
+lt 90
+fd 100
+lt 90 
+
+
+
+
+
+
+
+
+
+
+pd
+fd 200
+pu
+fd 100
+pd
+fd 100
+pu 
+fd 200
+rt 90
+fd 100
+rt 90
+
+
+
+
+
+
+
+
+
+pd 
+fd 200 
+pu 
+fd 100
+pd 
+fd 200
+rt 180
+fd 100
+lt 90
+pu
+fd 300
+pd
+fd 100
+
+buttoncreate [main] [Arriba] [Arriba] 600 100 80 30 [main]
+
+buttoncreate [main] [Derecha] [Derecha] 700 0 80 30 [main]
+
+buttoncreate [main] [Izquierda] [Izquierda] 500 0 80 30 [main]
+
+buttoncreate [main] [Abajo] [Abajo] 600 -100 80 30 [main]
+
+buttoncreate [main] [Restart] [Restart] 600 300 80 30 [main]
+
+pu
+setxy 250 250
+
