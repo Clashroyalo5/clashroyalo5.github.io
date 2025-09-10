@@ -1,47 +1,67 @@
-// Ejemplo de animación para el botón al hacer clic
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.add('clicked');
-        setTimeout(() => button.classList.remove('clicked'), 600);
+/* ==================== MENÚ MÓVIL ==================== */
+const navMenu = document.getElementById('nav-menu'),
+      navToggle = document.getElementById('nav-toggle'),
+      navClose = document.getElementById('nav-close');
+
+/* Mostrar menú */
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.add('show-menu');
     });
-});
-
-window.addEventListener("load", function() {
-    const loader = document.getElementById("loader");
-    const wrapper = document.getElementById("loader-wrapper");
-    const warning = document.getElementById("connection-warning");
-
-    // Mostrar advertencia después de 4 segundos si la página sigue cargando
-    const warningTimeout = setTimeout(function() {
-        warning.style.display = "block";
-    }, 4000);
-
-    loader.addEventListener("animationiteration", function() {
-        // Una vez que se complete la vuelta actual, realiza la transición hacia arriba
-        wrapper.style.transform = "translateY(-100%)"; // Mueve el fondo hacia arriba
-        document.getElementById("content").style.display = "block"; // Muestra el contenido
-        
-        // Cancela el mensaje de advertencia si ya cargó
-        clearTimeout(warningTimeout);
-
-        // Espera 1 segundo para que la transición termine antes de ocultar el wrapper
-        setTimeout(function() {
-            wrapper.style.display = "none";
-        }, 1000);
-    });
-
-    // Desactiva la animación infinita cuando la página está completamente cargada
-    loader.style.animationIterationCount = "1";
-});
-
-let currentIndex = 0;
-const slides = document.querySelectorAll('.carousel ul li');
-const totalSlides = slides.length;
-
-function moveSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    const translateValue = -currentIndex * 100 + '%';
-    document.querySelector('.carousel ul').style.transform = `translateX(${translateValue})`;
 }
 
-setInterval(moveSlide, 3000); // Cambia de imagen cada 4,5 segundos
+/* Ocultar menú */
+if (navClose) {
+    navClose.addEventListener('click', () => {
+        navMenu.classList.remove('show-menu');
+    });
+}
+
+/* Cerrar menú al hacer clic en un enlace */
+const navLinks = document.querySelectorAll('.nav__link');
+
+function linkAction() {
+    const navMenu = document.getElementById('nav-menu');
+    navMenu.classList.remove('show-menu');
+}
+navLinks.forEach(n => n.addEventListener('click', linkAction));
+
+
+/* ==================== CAMBIAR FONDO DEL HEADER AL HACER SCROLL ==================== */
+function scrollHeader() {
+    const header = document.querySelector('.header');
+    // Cuando el scroll es mayor a 50 viewport height, añade la clase header-scroll
+    if (this.scrollY >= 50) {
+        header.classList.add('header-scroll');
+    } else {
+        header.classList.remove('header-scroll');
+    }
+}
+window.addEventListener('scroll', scrollHeader);
+
+
+/* ==================== ANIMACIONES DE APARICIÓN AL HACER SCROLL ==================== */
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+});
+
+const elementsToAnimate = document.querySelectorAll('.section__title, .section__subtitle, [class*="__container"]');
+elementsToAnimate.forEach((el) => observer.observe(el));
+
+
+/* ==================== MANEJO DEL FORMULARIO DE CONTACTO ==================== */
+const contactForm = document.querySelector('.contact__form');
+
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Esta línea es la que debemos eliminar su efecto.
+
+    alert('¡Mensaje enviado con éxito! Gracias por contactarme.');
+    
+    contactForm.reset();
+});

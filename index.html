@@ -3,103 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio de Abel Nicolás Jaimes Orjuela</title>
+    <title>Abel Jaimes - Desarrollador de Software a Medida</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="Logo1.png" type="image/x-icon">
 </head>
 <body>
 
-    <div id="loader-wrapper">
-        <div id="loader">
-            <img src="https://i.pinimg.com/originals/fc/90/dd/fc90dd4f4d2476d0d458ee9c9ca81775.png" alt="Cargando...">
-        </div>
-        <p id="connection-warning" style="display: none;">Verifica tu conexión a internet.</p>
-    </div>
-
-    <div id="content" style="display: none;"></div>
-        <header>
-            <h1>Abel Nicolás Jaimes Orjuela</h1>
-            <p>Desarrollador Web - Creación de páginas web para negocios con movimiento y diseño atractivo</p>
-        </header>
-
-        <main>
-            <section id="about">
-                <h2>¿Quién soy?</h2>
-                <p>Desarrollador web especializado en diseños modernos y animaciones para una excelente experiencia de usuario.</p>
-            </section>
-        </main>
-
-            <!-- <div class="carousel-container">
-                <div class="carousel">
-                    <ul>
-    
-                        <li><img src="https://stgsrdg.github.io/img/carousel1.jpg" alt="Imagen 1" ></li>
-    
-                        <li><img src="https://stgsrdg.github.io/img/carousel3.jpg" alt="Imagen 2"></li>
-    
-                        <li><img src="https://stgsrdg.github.io/img/carousel2.jpg" alt="Imagen 3"></li>
-
-    
-                    </ul>
-                </div>
-            </div> -->
-
-        <main
-            <section id="benefits">
-                <h2>Beneficios de trabajar conmigo</h2>
-                <ul>
-                    <li><strong>Atención personalizada</strong>: Responden a tus necesidades.</li>
-                    <li><strong>Diseño atractivo</strong>: Adaptado a todos los dispositivos.</li>
-                    <li><strong>Animaciones</strong>: Mejoran la experiencia del usuario.</li>
-                    <li><strong>Dominio ideal</strong>: Configuran el más adecuado para tu negocio.</li>
-                    <li><strong>Código QR</strong>: Facilita el acceso a tu página.</li>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">Abel Jaimes</a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="#about" class="nav__link">Sobre Mí</a></li>
+                    <li><a href="#services" class="nav__link">Especialidades</a></li>
+                    <li><a href="#projects" class="nav__link">Proyectos</a></li>
+                    <li><a href="#contact" class="nav__link nav__link--button">Hablemos</a></li>
                 </ul>
-            </section>
-
-            <section id="projects">
-                <h2>Mis Proyectos</h2>
-
-                <div class="project-card">
-                    <h3>Papi Quiero Pizza Ya</h3>
-                    <p>Diseñé y desarrollé la página web de nuestra pizzería, con sistemas para pedidos en línea, registro de ventas exportables a Excel y control de deudas por mesa.</p>
-                    <a href="https://papiquieropizzaya.com/" target="_blank">Ver Proyecto</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Colsulta Pediatrica En Chile y Online</h3>
-                    <p>Diseño atractivo con loader de inicio, carrusel de imágenes, fondo personalizado, enlaces directos a WhatsApp y llamadas, además de un enlace para ver la hoja de vida proporcionada por el cliente. Algunas imágenes también fueron aportadas por él.</p>
-                    <a href="https://stgsrdg.github.io/" target="_blank">Ver Proyecto</a>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2>Contacto</h2>
-                <p style="text-align: center; margin-bottom: 20px;">Si estás interesado en trabajar conmigo o simplemente quieres saludar, ¡contáctame!</p>
-                <div class="buttons">
-                    <a href="https://wa.me/573025881859" target="_blank" class="WBtn">WhatsApp</a>
-                    <a href="tel:3025881859" target="_blank" class="CBtn">Llamame</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2024 Abel Nicolás Jaimes Orjuela. Todos los derechos reservados.</p>
-            <div class="footer-logos">
-                <a href="https://github.com/Clashroyalo5" target="_blank">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="logo">
-                </a>
-                <a href="https://www.hostinger.com" target="_blank">
-                    <img src="https://www.imagensempng.com.br/wp-content/uploads/2023/05/Logo-Hostinger-Png-1024x1024.png" alt="Hostinger" class="logo">
-                </a>
+                <div class="nav__close" id="nav-close"><i class="ri-close-line"></i></div>
             </div>
-        </footer>
-    </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+    </header>
 
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/CSSPlugin.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/EasePack.min.js"></script> -->
+    <main>
+        <section class="hero section">
+            <div class="hero__container container grid">
+                <div class="hero__content">
+                    <span class="hero__subtitle">Desarrollador de Software</span>
+                    <h1 class="hero__title">
+                        Transformo tus ideas en <span>software potente</span> que impulsa tu negocio.
+                    </h1>
+                    <p class="hero__description">
+                        Desde aplicaciones web innovadoras hasta sistemas móviles intuitivos. Tu visión, mi código. Mi misión es crear soluciones a medida que resuelvan problemas reales y generen valor.
+                    </p>
+                    <div class="hero__buttons">
+                        <a href="#contact" class="button">Agenda tu Consulta Gratuita</a>
+                        <a href="#projects" class="button button--ghost">Ver Mis Proyectos</a>
+                    </div>
+                </div>
+                <div class="hero__image">
+                    <img src="./img/perfil.jpg" alt="Foto de Abel Jaimes">
+                </div>
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <div class="about__container container grid">
+                <div class="about__content">
+                    <span class="section__subtitle">Mi Historia</span>
+                    <h2 class="section__title">Hola, soy Abel Jaimes. Mi compromiso es contigo y tu proyecto.</h2>
+                    <p class="about__description">
+                        Me apasiona la tecnología y la resolución creativa de problemas. Como desarrollador independiente, mi mayor ventaja es la atención personalizada que ofrezco. Me involucro al 100% en cada proyecto, asegurando una comunicación directa y transparente desde el primer día.
+                    </p>
+                    <p class="about__description">
+                        Mi filosofía es simple: construir software robusto, escalable y, sobre todo, útil.
+                    </p>
+                </div>
+                <div class="about__stats">
+                    <div class="about__stat">
+                        <h3 class="about__stat-number">2+</h3>
+                        <span class="about__stat-text">Años de<br>Experiencia</span>
+                    </div>
+                    <div class="about__stat">
+                        <h3 class="about__stat-number">5+</h3>
+                        <span class="about__stat-text">Proyectos<br>Completados</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services section" id="services">
+            <div class="container">
+                <span class="section__subtitle">Cómo te ayudo</span>
+                <h2 class="section__title">Mis Habilidades Clave</h2>
+                <div class="services__container grid">
+                    <div class="service__card">
+                        <i class="ri-window-line service__icon"></i>
+                        <h3 class="service__title">Desarrollo Web a Medida</h3>
+                        <p class="service__description">Creación de plataformas robustas y escalables, desde landing pages hasta complejas aplicaciones full-stack.</p>
+                    </div>
+                    <div class="service__card">
+                        <i class="ri-smartphone-line service__icon"></i>
+                        <h3 class="service__title">Apps Móviles Nativas e Híbridas</h3>
+                        <p class="service__description">Soluciones intuitivas y de alto rendimiento para iOS y Android que tus usuarios amarán.</p>
+                    </div>
+                    <div class="service__card">
+                        <i class="ri-database-2-line service__icon"></i>
+                        <h3 class="service__title">Optimización y Modernización</h3>
+                        <p class="service__description">Actualizo y mejoro tus sistemas existentes para asegurar eficiencia, seguridad y escalabilidad futura.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--<section class="projects section" id="projects">
+            <div class="container">
+                <span class="section__subtitle">Mi Trabajo</span>
+                <h2 class="section__title">Soluciones que Generan Impacto</h2>
+                <div class="projects__container grid">
+                    <div class="project__card">
+                        <img src="https://via.placeholder.com/600x400/1A1A2E/FFFFFF?text=Proyecto+1" alt="Imagen del proyecto 1" class="project__image">
+                        <div class="project__content">
+                            <h3 class="project__title">Plataforma de E-commerce</h3>
+                            <p class="project__description">Desarrollo de una tienda online que aumentó las ventas de un cliente en un 40% en 6 meses.</p>
+                            <div class="project__tags">
+                                <span class="project__tag">React</span>
+                                <span class="project__tag">Node.js</span>
+                                <span class="project__tag">PostgreSQL</span>
+                            </div>
+                            <a href="#" class="project__link">Ver Caso de Éxito <i class="ri-arrow-right-line"></i></a>
+                        </div>
+                    </div>
+                    <div class="project__card">
+                        <img src="https://via.placeholder.com/600x400/1A1A2E/FFFFFF?text=Proyecto+2" alt="Imagen del proyecto 2" class="project__image">
+                        <div class="project__content">
+                            <h3 class="project__title">App de Gestión de Tareas</h3>
+                            <p class="project__description">Aplicación móvil para organizar equipos, mejorando la productividad en un 25%.</p>
+                            <div class="project__tags">
+                                <span class="project__tag">Flutter</span>
+                                <span class="project__tag">Firebase</span>
+                            </div>
+                            <a href="#" class="project__link">Ver en GitHub <i class="ri-arrow-right-line"></i></a>
+                        </div>
+                    </div>
+                     <div class="project__card">
+                        <img src="https://via.placeholder.com/600x400/1A1A2E/FFFFFF?text=Proyecto+3" alt="Imagen del proyecto 3" class="project__image">
+                        <div class="project__content">
+                            <h3 class="project__title">Dashboard de Analíticas</h3>
+                            <p class="project__description">Sistema web para visualización de datos en tiempo real, ayudando a la toma de decisiones estratégicas.</p>
+                            <div class="project__tags">
+                                <span class="project__tag">Vue.js</span>
+                                <span class="project__tag">Python (Django)</span>
+                                <span class="project__tag">D3.js</span>
+                            </div>
+                            <a href="#" class="project__link">Ver Demo <i class="ri-arrow-right-line"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+        
+        <section class="testimonial section">
+            <div class="container">
+                <span class="section__subtitle">Opiniones</span>
+                <h2 class="section__title">Lo que mis clientes dicen</h2>
+                <div class="testimonial__container grid">
+                    <div class="testimonial__card">
+                        <p class="testimonial__quote">"Trabajar con Abel Jaimes fue una experiencia excepcional. Su atención al detalle y su compromiso con la calidad superaron nuestras expectativas. 100% recomendado."</p>
+                        <div class="testimonial__client">
+                            <div>
+                                <h4 class="testimonial__client-name">Ana García</h4>
+                                <span class="testimonial__client-title">CEO de Startup Creativa</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="testimonial__card">
+                        <p class="testimonial__quote">"La comunicación fue fluida y transparente durante todo el proceso. Entendió perfectamente nuestra visión y la ejecutó a la perfección. ¡Un verdadero profesional!"</p>
+                        <div class="testimonial__client">
+                            <div>
+                                <h4 class="testimonial__client-name">Carlos Rodriguez</h4>
+                                <span class="testimonial__client-title">Director de Operaciones, Tech Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section" id="contact">
+            <div class="contact__container container grid">
+                <div class="contact__content">
+                    <span class="section__subtitle">¿Tienes una idea?</span>
+                    <h2 class="section__title">Construyamos algo impresionante juntos.</h2>
+                    <p class="contact__description">
+                        Estoy listo para escuchar sobre tu proyecto. Completa el formulario o envíame un correo y me pondré en contacto contigo a la brevedad para agendar una consulta gratuita y sin compromiso.
+                    </p>
+                </div>
+                <form action="https://formspree.io/f/mkgvybqv" method="POST" class="contact__form">
+                    <div class="contact__form-group">
+                        <input type="text" name="name" placeholder="Tu Nombre" class="contact__input" required>
+                    </div>
+                    <div class="contact__form-group">
+                        <input type="email" name="email" placeholder="Tu Correo Electrónico" class="contact__input" required>
+                    </div>
+                    <div class="contact__form-group">
+                        <textarea name="message" placeholder="Cuéntame sobre tu proyecto..." class="contact__input" required></textarea>
+                    </div>
+                    <button type="submit" class="button">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <p class="footer__copyright">&copy; 2025 Abel Jaimes. Todos los derechos reservados.</p>
+            <div class="footer__socials">
+                <a href="#" target="_blank" class="footer__social-link"><i class="ri-github-fill"></i></a>
+                <a href="#" target="_blank" class="footer__social-link"><i class="ri-linkedin-box-fill"></i></a>
+                <a href="#" target="_blank" class="footer__social-link"><i class="ri-twitter-x-line"></i></a>
+            </div>
+        </div>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>
