@@ -3,203 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abel Jaimes - Desarrollador de Software a Medida</title>
-    
+    <title>Galería F-AIR Colombia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-fondo: #0a0f18;      /* Azul oscuro casi negro */
+            --color-primario: #00aeff;   /* Azul cian brillante */
+            --color-acento: #ffc107;     /* Amarillo dorado */
+            --color-texto: #e0e0e0;      /* Gris claro */
+            --fuente-titulo: 'Orbitron', sans-serif;
+            --fuente-cuerpo: 'Roboto', sans-serif;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fuente-cuerpo);
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        /* --- ENCABEZADO Y TÍTULOS --- */
+        .encabezado {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(rgba(10, 15, 24, 0.8), rgba(10, 15, 24, 0.8)), url('https://upload.wikimedia.org/wikipedia/commons/e/e5/F-Air_Colombia_2019_KFIR.jpg') no-repeat center center/cover;
+            border-bottom: 4px solid var(--color-primario);
+        }
+
+        .encabezado h1 {
+            font-family: var(--fuente-titulo);
+            font-size: 3.5rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--color-primario);
+            margin-bottom: 10px;
+        }
+
+        .encabezado p {
+            font-size: 1.2rem;
+            color: var(--color-acento);
+            font-weight: 300;
+        }
+
+        /* --- GALERÍA DE IMÁGENES --- */
+        .galeria-contenedor {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            /* Define las columnas: se ajustan automáticamente */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .foto {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .foto:hover {
+            transform: scale(1.05); /* Agranda la imagen al pasar el mouse */
+            box-shadow: 0 0 25px var(--color-primario);
+            border-color: var(--color-primario);
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+            display: block;
+        }
+        
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            background-color: #05080d;
+            border-top: 2px solid var(--color-primario);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--color-acento);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- ESTILOS RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .encabezado h1 {
+                font-size: 2.5rem;
+            }
+            .encabezado p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">Abel Jaimes</a>
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li><a href="#about" class="nav__link">Sobre Mí</a></li>
-                    <li><a href="#services" class="nav__link">Especialidades</a></li>
-                    <li><a href="#projects" class="nav__link">Proyectos</a></li>
-                    <li><a href="#contact" class="nav__link nav__link--button">Hablemos</a></li>
-                </ul>
-                <div class="nav__close" id="nav-close"><i class="ri-close-line"></i></div>
-            </div>
-            <div class="nav__toggle" id="nav-toggle">
-                <i class="ri-menu-line"></i>
-            </div>
-        </nav>
+    <header class="encabezado">
+        <h1>F-AIR COLOMBIA</h1>
+        <p>Una Galería Aeronáutica de Alto Vuelo</p>
     </header>
 
-    <main>
-        <section class="hero section">
-            <div class="hero__container container grid">
-                <div class="hero__content">
-                    <span class="hero__subtitle">Desarrollador de Software</span>
-                    <h1 class="hero__title">
-                        Transformo tus ideas en <span>software potente</span> que impulsa tu negocio.
-                    </h1>
-                    <p class="hero__description">
-                        Desde aplicaciones web innovadoras hasta sistemas móviles intuitivos. Tu visión, mi código. Mi misión es crear soluciones a medida que resuelvan problemas reales y generen valor.
-                    </p>
-                    <div class="hero__buttons">
-                        <a href="#contact" class="button">Agenda tu Consulta Gratuita</a>
-                        <a href="#projects" class="button button--ghost">Ver Mis Proyectos</a>
-                    </div>
-                </div>
-                <div class="hero__image">
-                    <img src="./img/perfil.jpg" alt="Foto de Abel Jaimes">
-                </div>
-            </div>
-        </section>
-
-        <section class="about section" id="about">
-            <div class="about__container container grid">
-                <div class="about__content">
-                    <span class="section__subtitle">Mi Historia</span>
-                    <h2 class="section__title">Hola, soy Abel Jaimes. Mi compromiso es contigo y tu proyecto.</h2>
-                    <p class="about__description">
-                        Me apasiona la tecnología y la resolución creativa de problemas. Como desarrollador independiente, mi mayor ventaja es la atención personalizada que ofrezco. Me involucro al 100% en cada proyecto, asegurando una comunicación directa y transparente desde el primer día.
-                    </p>
-                    <p class="about__description">
-                        Mi filosofía es simple: construir software robusto, escalable y, sobre todo, útil.
-                    </p>
-                </div>
-                <div class="about__stats">
-                    <div class="about__stat">
-                        <h3 class="about__stat-number">2+</h3>
-                        <span class="about__stat-text">Años de<br>Experiencia</span>
-                    </div>
-                    <div class="about__stat">
-                        <h3 class="about__stat-number">5+</h3>
-                        <span class="about__stat-text">Proyectos<br>Completados</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="services section" id="services">
-            <div class="container">
-                <span class="section__subtitle">Cómo te ayudo</span>
-                <h2 class="section__title">Mis Habilidades Clave</h2>
-                <div class="services__container grid">
-                    <div class="service__card">
-                        <i class="ri-window-line service__icon"></i>
-                        <h3 class="service__title">Desarrollo Web a Medida</h3>
-                        <p class="service__description">Creación de plataformas robustas y escalables, desde landing pages hasta complejas aplicaciones full-stack.</p>
-                    </div>
-                    <div class="service__card">
-                        <i class="ri-smartphone-line service__icon"></i>
-                        <h3 class="service__title">Apps Móviles Nativas e Híbridas</h3>
-                        <p class="service__description">Soluciones intuitivas y de alto rendimiento para iOS y Android que tus usuarios amarán.</p>
-                    </div>
-                    <div class="service__card">
-                        <i class="ri-database-2-line service__icon"></i>
-                        <h3 class="service__title">Optimización y Modernización</h3>
-                        <p class="service__description">Actualizo y mejoro tus sistemas existentes para asegurar eficiencia, seguridad y escalabilidad futura.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="projects section" id="projects">
-            <div class="container">
-                <span class="section__subtitle">Mi Trabajo</span>
-                <h2 class="section__title">Soluciones que Generan Impacto</h2>
-                <div class="projects__container grid">
-                    <div class="project__card">
-                        <img src="https://papiquieropizzaya.com/Carrusel/12-2.jpg" alt="Imagen del proyecto 1" class="project__image">
-                        <div class="project__content">
-                            <h3 class="project__title">Papi Quiero Pizza Ya</h3>
-                            <p class="project__description">Desarrollo de una web donde los clientes podían ver los menus, los productos más pedidos, la ubicacón, y poder pedir.</p>
-                            <a href="https://papiquieropizzaya.com" class="project__link">Visitar<i class="ri-arrow-right-line"></i></a>
-                        </div>
-                    </div>
-                    <div class="project__card">
-                        <img src="./img/chinacota.jpg" alt="Imagen del proyecto 2" class="project__image">
-                        <div class="project__content">
-                            <h3 class="project__title">Chinácota</h3>
-                            <p class="project__description">Página donde los visitantes pueden ver la historia de Chinácota, donde hospedarse, donde comer y que lugares visitar.</p>
-                            <a href="#" class="project__link">En construcción...<!--<i class="ri-arrow-right-line"></i>--></a>
-                        </div>
-                    </div>
-                     <div class="project__card">
-                        <img src="https://coloresycasas.com/css/fondo/4.jpg" alt="Imagen del proyecto 3" class="project__image">
-                        <div class="project__content">
-                            <h3 class="project__title">Colores y casas</h3>
-                            <p class="project__description">Landing page donde los clientes pueden ver acerca del negocio, saber su ubicacón, contactarlo y ver todos sus productos.</p>
-                            <a href="https://coloresycasas.com" class="project__link">Visitar<i class="ri-arrow-right-line"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main class="galeria-contenedor">
         
-        <!--<section class="testimonial section">
-            <div class="container">
-                <span class="section__subtitle">Opiniones</span>
-                <h2 class="section__title">Lo que mis clientes dicen</h2>
-                <div class="testimonial__container grid">
-                    <div class="testimonial__card">
-                        <p class="testimonial__quote">"Trabajar con Abel Jaimes fue una experiencia excepcional. Su atención al detalle y su compromiso con la calidad superaron nuestras expectativas. 100% recomendado."</p>
-                        <div class="testimonial__client">
-                            <div>
-                                <h4 class="testimonial__client-name">Ana García</h4>
-                                <span class="testimonial__client-title">CEO de Startup Creativa</span>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="testimonial__card">
-                        <p class="testimonial__quote">"La comunicación fue fluida y transparente durante todo el proceso. Entendió perfectamente nuestra visión y la ejecutó a la perfección. ¡Un verdadero profesional!"</p>
-                        <div class="testimonial__client">
-                            <div>
-                                <h4 class="testimonial__client-name">Carlos Rodriguez</h4>
-                                <span class="testimonial__client-title">Director de Operaciones, Tech Solutions</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-
-        <section class="contact section" id="contact">
-            <div class="contact__container container grid">
-                <div class="contact__content">
-                    <span class="section__subtitle">¿Tienes una idea?</span>
-                    <h2 class="section__title">Construyamos algo impresionante juntos.</h2>
-                    <p class="contact__description">
-                        Estoy listo para escuchar sobre tu proyecto. Completa el formulario o envíame un correo y me pondré en contacto contigo a la brevedad para agendar una consulta gratuita y sin compromiso.
-                    </p>
-                </div>
-                <form action="https://formspree.io/f/mkgvybqv" method="POST" class="contact__form">
-                    <div class="contact__form-group">
-                        <input type="text" name="name" placeholder="Tu Nombre" class="contact__input" required>
-                    </div>
-                    <div class="contact__form-group">
-                        <input type="email" name="email" placeholder="Tu Correo Electrónico" class="contact__input" required>
-                    </div>
-                    <div class="contact__form-group">
-                        <textarea name="message" placeholder="Cuéntame sobre tu proyecto..." class="contact__input" required></textarea>
-                    </div>
-                    <button type="submit" class="button">Enviar Mensaje</button>
-                </form>
-            </div>
-        </section>
+        <div class="foto">
+            <img src="Gripen-Frente.jpg">
+        </div>
+        <div class="foto">
+            <img src="Gripen-Armas.jpg">
+        </div>
+        <div class="foto">
+            <img src="Gripen-Atras.jpg">
+        </div>
+        <div class="foto">
+            <img src="Abel-Cabina-Gripen.jpg">
+        </div>
+        <div class="foto">
+            <img src="Gripren-Escala-Pequeña-Lejos.jpg">
+        </div>
+        <div class="foto">
+            <img src="Gripren-Escala-Pequeña-Cerca.jpg">
+        </div>
+         <div class="foto">
+            <img src="F16-Park.jpg">
+        </div>
+        <div class="foto">
+            <img src="F16-Pilot.jpg">
+        </div>
+        <div class="foto">
+            <img src="Dron-MILKOR.jpg">
+        </div>
+        <div class="foto">
+            <img src="Hija-Petro-1.jpg">
+        </div>
+        <div class="foto">
+            <img src="Hija-Petro-2.jpg">
+        </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer__container container">
-            <p class="footer__copyright">&copy; 2025 Abel Jaimes. Todos los derechos reservados.</p>
-            <div class="footer__socials">
-                <a href="#" target="_blank" class="footer__social-link"><i class="ri-github-fill"></i></a>
-                <a href="#" target="_blank" class="footer__social-link"><i class="ri-linkedin-box-fill"></i></a>
-                <a href="#" target="_blank" class="footer__social-link"><i class="ri-twitter-x-line"></i></a>
-            </div>
-        </div>
+    <footer>
+        <p>Página diseñada con ❤️ por <a href="/">CodeMate</a> | Pasión por la aviación</p>
     </footer>
-    
-    <script src="script.js"></script>
+
 </body>
 </html>
