@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Carrito de Compras - Kaleidocospio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <style>
+        .resumen-carrito table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        .resumen-carrito th, .resumen-carrito td {
+            border: 1px solid var(--color-borde);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .resumen-carrito th {
+            background-color: var(--color-fondo-seccion);
+        }
+        .resumen-carrito td:last-child {
+            text-align: center;
+        }
+        #resumen-total {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primario);
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <section class="seccion">
+            <h1 class="seccion-titulo">Resumen de tu Pedido</h1>
+            
+            <div class="resumen-carrito">
+                <div id="lista-carrito">
+                    <p>Cargando carrito...</p>
+                </div>
+                
+                <hr style="margin: 2rem 0;">
+                
+                <div id="resumen-total">
+                    <h3>Total: $0</h3>
+                </div>
+                
+                <a href="pago.html" id="btn-continuar-pago" class="btn" style="width: 100%; margin-top: 2rem;">
+                    Continuar al Pago
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/carrito.js"></script>
+    <script>
+        // ¡Importante!
+        // Le decimos al navegador que ejecute 'renderizarPaginaCarrito'
+        // tan pronto como la página termine de cargar.
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarPaginaCarrito();
+        });
+    </script>
+</body>
+</html>

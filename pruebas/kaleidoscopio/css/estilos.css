@@ -1,0 +1,495 @@
+/* --- Variables Globales (Paleta de Colores Claros) --- */
+:root {
+    --color-primario: #005A9C; /* Un azul corporativo moderno */
+    --color-secundario: #00B8A9; /* Un turquesa vibrante para acentos */
+    --color-fondo: #FFFFFF;
+    --color-fondo-seccion: #F8F9FA; /* Un gris muy claro para secciones */
+    --color-texto: #333333;
+    --color-texto-secundario: #555555;
+    --color-borde: #E0E0E0;
+    --sombra-caja: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Reseteo y Estilos Globales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Lato', 'Arial', sans-serif; /* Fuente moderna y legible */
+    line-height: 1.6;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-secundario);
+    text-decoration: underline;
+}
+
+/* Contenedor principal para centrar contenido */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Encabezado y Navegación --- */
+.header-principal {
+    background: var(--color-fondo);
+    border-bottom: 1px solid var(--color-borde);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra-caja);
+}
+
+.header-principal .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-kaleidocospio {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.nav-principal ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-principal ul li a {
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+    transition: color 0.3s ease;
+}
+
+.nav-principal ul li a:hover {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+/* --- Estilo de Secciones --- */
+.seccion {
+    padding: 5rem 0;
+}
+
+.seccion:nth-child(even) {
+    background-color: var(--color-fondo-seccion);
+}
+
+.seccion-titulo {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* --- 🛍️ Sección de Productos (Bolas) --- */
+.categorias-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Para responsiveness */
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.categoria-item {
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.categoria-item:hover {
+    transform: scale(1.05);
+}
+
+.categoria-imagen-wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--color-borde);
+    background-color: var(--color-fondo);
+    box-shadow: var(--sombra-caja);
+    transition: border-color 0.3s ease;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categoria-imagen-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Magia para centrar la imagen */
+}
+
+.categoria-item span {
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+
+/* Estilo para la "bola" activa */
+.categoria-item.active .categoria-imagen-wrapper {
+    border-color: var(--color-secundario);
+}
+
+.categoria-item.active span {
+    color: var(--color-primario);
+    font-weight: 700;
+}
+
+/* Contenedor de productos detallados */
+.productos-display-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--color-fondo);
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+}
+
+.producto-detalle {
+    display: none; /* Oculto por defecto */
+    animation: fadeIn 0.5s;
+}
+
+.producto-detalle.active {
+    display: block; /* Visible cuando está activo */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.listado-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+/* Tarjeta de Producto Individual */
+.card-producto {
+    background: var(--color-fondo);
+    border-radius: 8px;
+    box-shadow: var(--sombra-caja);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-producto img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-producto-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-producto-info h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-texto);
+}
+
+.card-producto-info .precio {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.card-producto-controles {
+    margin-top: auto; /* Empuja los controles al fondo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-producto-controles input[type="number"] {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Botón principal (reutilizable) */
+.btn {
+    display: inline-block;
+    background: var(--color-primario);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background: #004a80; /* Primario más oscuro */
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.btn-secundario {
+    background-color: var(--color-secundario);
+}
+.btn-secundario:hover {
+    background-color: #009a88; /* Secundario más oscuro */
+}
+
+/* --- Sección Sobre Nosotros y Ubicación --- */
+#sobre-nosotros p, #ubicacion p {
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    max-width: 800px;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+}
+
+#ubicacion iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: var(--sombra-caja);
+}
+
+/* --- Formulario de Contacto (y otros formularios) --- */
+.formulario {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-grupo {
+    margin-bottom: 1.5rem;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 2px rgba(0, 90, 156, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* --- Footer --- */
+.footer-principal {
+    background: var(--color-texto);
+    color: var(--color-fondo-seccion);
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: 2rem;
+}
+
+.footer-principal .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-principal a {
+    color: #fff;
+}
+
+.footer-principal a:hover {
+    color: var(--color-secundario);
+}
+
+/* --- Estilos para Carrito y Pago --- */
+.resumen-carrito, .formulario-pago, .confirmacion {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-fondo-seccion);
+    border-radius: 8px;
+    box-shadow: var(--sombra-caja);
+}
+
+.confirmacion {
+    text-align: center;
+}
+
+.confirmacion h1 {
+    color: var(--color-secundario);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Checkbox de Términos */
+.form-grupo-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.form-grupo-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Botón de pago deshabilitado */
+#btn-pagar-epayco:disabled {
+    background-color: #A0A0A0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- Nuevos Estilos (Basados en la referencia) --- */
+
+/* 1. Hero Section (Welcome) */
+.hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x600/333333/FFFFFF?text=Imagen+Hero+Kaleidocospio');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+/* 2. Sección de Contacto (2 columnas) */
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contacto-info {
+    font-size: 1.1rem;
+}
+
+.contacto-info h3 {
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+}
+
+.contacto-info p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* 3. Nuevo Footer (Multi-columna) */
+.footer-principal {
+    background: #1a1a1a; /* Más oscuro */
+    color: #ccc;
+    text-align: left;
+    padding: 4rem 0 2rem 0;
+}
+
+.footer-principal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-columna h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-columna p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-columna ul {
+    list-style: none;
+}
+
+.footer-columna ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-columna ul li a {
+    color: #ccc;
+}
+
+.footer-columna ul li a:hover {
+    color: var(--color-secundario);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.footer-bottom a {
+    color: #aaa;
+}

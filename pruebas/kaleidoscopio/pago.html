@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de Pago - Kaleidocospio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+</head>
+<body>
+    <header class="header-principal">
+        </header>
+
+    <main class="container">
+        <section class="seccion">
+            <h1 class="seccion-titulo">Datos de Envío y Pago</h1>
+            
+            <div class="formulario-pago">
+                <form id="formulario-cliente">
+                    <h3>1. Tus Datos</h3>
+                    <div class="form-grupo">
+                        <label for="nombre-pago">Nombre Completo</label>
+                        <input type="text" id="nombre-pago" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="email-pago">Correo Electrónico</label>
+                        <input type="email" id="email-pago" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="tel-pago">Teléfono (WhatsApp)</label>
+                        <input type="tel" id="tel-pago" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="specs-pago">Especificaciones del Pedido</label>
+                        <textarea id="specs-pago" class="form-control" placeholder="Ej: Camiseta blanca talla M, logo rojo. Taza con la foto adjunta..."></textarea>
+                    </div>
+
+                    <hr style="margin: 2rem 0;">
+
+                    <h3>2. Resumen del Pedido</h3>
+                    <div id="resumen-pago">
+                        <p>Total a Pagar: <strong>$XX.XXX</strong></p>
+                    </div>
+
+                    <hr style="margin: 2rem 0;">
+                    
+                    <h3>3. Confirmación</h3>
+                    <div class="form-grupo-checkbox">
+                        <input type="checkbox" id="check-terminos" required>
+                        <label for="check-terminos">
+                            He leído y acepto los <a href="terminos.html" target="_blank">Términos y Condiciones</a> 
+                            y confirmo que soy mayor de 18 años.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" id="btn-pagar-epayco" class="btn" style="width: 100%;" disabled>
+                        Pagar con ePayco
+                    </button>
+                </form>
+            </div>
+            
+        </section>
+    </main>
+
+    <footer class="footer-principal">
+        </footer>
+
+    <script src="js/carrito.js"></script>
+    <script src="js/epayco.js"></script>
+    <script>
+        // Aquí irá la lógica para validar el form y habilitar el botón
+    </script>
+</body>
+</html>

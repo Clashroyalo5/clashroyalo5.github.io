@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificando Pago...</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .verificando-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+        }
+        /* Un spinner simple de CSS */
+        .spinner {
+            border: 8px solid var(--color-fondo-seccion);
+            border-top: 8px solid var(--color-primario);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="verificando-container">
+        <div class="spinner"></div>
+        <h2>Verificando tu pago, por favor espera...</h2>
+        <p>No cierres esta ventana.</p>
+    </div>
+    
+    <script src="js/verificacion.js"></script>
+</body>
+</html>
