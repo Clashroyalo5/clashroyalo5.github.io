@@ -10,7 +10,23 @@
 <body>
 
     <header class="header-principal">
-        </header>
+        <div class="container">
+            <a href="index.html" class="logo-kaleidocospio">Kaleidocospio</a>
+            
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                &#9776; </button>
+            
+            <nav class="nav-principal" id="nav-menu">
+                <ul>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="carrito.html" class="btn btn-secundario">Carrito</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main>
 
@@ -23,8 +39,8 @@
         <section id="sobre-nosotros" class="seccion">
             <div class="container">
                 <h2 class="seccion-titulo">Sobre Nosotros</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    Somos un estudio gráfico con sede local, dedicado a dar vida a tus ideas. 
+                <p>
+                    Somos Kaleidocospio, un estudio gráfico con sede local, dedicado a dar vida a tus ideas. 
                     Desde material publicitario hasta regalos personalizados, nuestro equipo se enfoca en la calidad 
                     y la creatividad en cada proyecto.
                 </p>
@@ -32,51 +48,134 @@
         </section>
 
         <section id="productos" class="seccion">
-            </section>
+            <div class="container">
+                <h2 class="seccion-titulo">Nuestros Productos</h2>
+                
+                <div class="categorias-container">
+                    
+                    <div class="categoria-item" data-target="camisetas">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/00B8A9/white?text=Camisetas" alt="Camisetas">
+                        </div>
+                        <span>Camisetas</span>
+                    </div>
+
+                    <div class="categoria-item" data-target="tazas">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/FF6B6B/white?text=Tazas" alt="Tazas">
+                        </div>
+                        <span>Tazas</span>
+                    </div>
+
+                    <div class="categoria-item" data-target="trofeos">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/F9C80E/white?text=Trofeos" alt="Trofeos">
+                        </div>
+                        <span>Trofeos y Placas</span>
+                    </div>
+
+                    <div class="categoria-item" data-target="gorras">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/333333/white?text=Gorras" alt="Gorras">
+                        </div>
+                        <span>Gorras</span>
+                    </div>
+
+                    <div class="categoria-item" data-target="llaveros">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/8A2BE2/white?text=Llaveros" alt="Llaveros">
+                        </div>
+                        <span>Llaveros</span>
+                    </div>
+
+                    <div class="categoria-item" data-target="botones">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/FF9A00/white?text=Botones" alt="Botones">
+                        </div>
+                        <span>Botones</span>
+                    </div>
+                    
+                    <div class="categoria-item" data-target="otros">
+                        <div class="categoria-imagen-wrapper">
+                            <img src="https://placehold.co/130x130/B2B2B2/white?text=Otros" alt="Otros">
+                        </div>
+                        <span>Otros</span>
+                    </div>
+                    
+                </div> <div class="productos-display-container" id="productos-display">
+                    <p>Selecciona una categoría para ver los productos.</p>
+                </div>
+                
+            </div>
+        </section>
 
         <section id="ubicacion" class="seccion">
-            </section>
+            <div class="container">
+                <h2 class="seccion-titulo">Nuestra Ubicación</h2>
+                
+                <div class="ubicacion-grid">
+                    
+                    <div class="ubicacion-info">
+                        <h3>Visítanos en Kaleidocospio</h3>
+                        <p>
+                            <strong>Dirección:</strong><br>
+                            [Tu Dirección Completa, Local X]<br>
+                            [Ciudad, Departamento]
+                        </p>
+                        <p>
+                            <strong>Teléfono / WhatsApp:</strong><br>
+                            +57 300 000 0000
+                        </p>
+                        <p>
+                            <strong>Correo Electrónico:</strong><br>
+                            contacto@kaleidocospio.com
+                        </p>
+                        <p>
+                            <strong>Horario:</strong><br>
+                            Lunes a Viernes: 8:00 AM - 6:00 PM
+                        </p>
+                    </div>
+
+                    <div class="ubicacion-mapa">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8157148503816!2d-72.90998888522108!3d7.91373399429402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e68e7f1e7a5b3a3%3A0x60f089f2e3a093a1!2sPamplona%2C%20North%20Santander!5e0!3m2!1sen!2sco!4v1678886400000!5m2!1sen!2sco" 
+                            height="450" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
         <section id="contacto" class="seccion">
             <div class="container">
                 <h2 class="seccion-titulo">Contacto</h2>
-                <div class="contacto-grid">
-                    
-                    <form action="https://formspree.io/f/TU_ID_DE_FORMULARIO" method="POST" class="formulario">
-                        <div class="form-grupo">
-                            <label for="nombre">Nombre Completo:</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" required>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="telefono">Teléfono:</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-control" required>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="correo">Correo Electrónico:</label>
-                            <input type="email" id="correo" name="correo" class="form-control" required>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="pregunta">Tu pregunta:</label>
-                            <textarea id="pregunta" name="pregunta" class="form-control" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%;">Enviar Pregunta</button>
-                    </form>
-                    
-                    <div class="contacto-info">
-                        <h3>Visítanos</h3>
-                        <p>
-                            <strong>Dirección:</strong> [Tu Dirección, Ciudad, País]<br>
-                            <strong>Teléfono:</strong> +57 300 000 0000<br>
-                            <strong>Email:</strong> contacto@kaleidocospio.com
-                        </p>
-                        <h3>Horario de Atención</h3>
-                        <p>
-                            Lunes a Viernes: 8:00 AM - 6:00 PM<br>
-                            Sábados: 9:00 AM - 1:00 PM
-                        </p>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem auto;">
+                    ¿Tienes una pregunta? Completa el formulario y te responderemos lo antes posible.
+                </p>
+                
+                <form action="https://formspree.io/f/TU_ID_DE_FORMULARIO" method="POST" class="formulario">
+                    <div class="form-grupo">
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="name" class="form-control" required>
                     </div>
-
-                </div>
+                    <div class="form-grupo">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="pregunta">Tu pregunta:</label>
+                        <textarea id="pregunta" name="pregunta" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Enviar Pregunta</button>
+                </form>
             </div>
         </section>
 
@@ -127,5 +226,71 @@
     </footer>
 
     <script src="js/productos.js"></script>
-    <script src="js/carrito.js"></script> <script src="js/app-index.js"></script> </body>
+    
+    <script src="js/carrito.js"></script>
+
+    <script src="js/app-index.js"></script>
+
+    <script src="js/burguer-nav.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoriasItems = document.querySelectorAll('.categoria-item');
+            const productosDisplay = document.getElementById('productos-display');
+
+            // --- LÓGICA DE RENDERIZADO DE PRODUCTOS ---
+            const renderizarProductos = (categoriaId) => {
+                const productos = DATOS_PRODUCTOS[categoriaId];
+                
+                if (!productos || productos.length === 0) {
+                    productosDisplay.innerHTML = '<p>No hay productos en esta categoría.</p>';
+                    return;
+                }
+
+                let html = '<div class="listado-productos">';
+                productos.forEach(producto => {
+                    html += `
+                        <div class="card-producto">
+                            <img src="${producto.imagen}" alt="${producto.nombre}">
+                            <div class="card-producto-info">
+                                <h4>${producto.nombre}</h4>
+                                <span class="precio">$${producto.precio.toLocaleString('es-CO')}</span>
+                                <div class="card-producto-controles">
+                                    <input type="number" id="cantidad-${producto.id}" value="1" min="1" class="form-control">
+                                    <button 
+                                        class="btn btn-secundario" 
+                                        onclick="agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio})">
+                                        Agregar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+                productosDisplay.innerHTML = html;
+            };
+
+            // --- LÓGICA DEL ACORDEÓN (BOLAS) ---
+            categoriasItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetCategoria = item.dataset.target;
+                    categoriasItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    renderizarProductos(targetCategoria);
+                });
+            });
+
+            // Cargar la primera categoría por defecto
+            if (categoriasItems.length > 0) {
+                categoriasItems[0].click();
+            }
+        });
+        
+        // YA NO NECESITAMOS LA FUNCIÓN 'manejarAgregarAlCarrito' aquí,
+        // porque ahora el botón 'onclick' llama directamente a 
+        // la función 'agregarAlCarrito' de 'js/carrito.js'
+    </script>
+</body>
 </html>
