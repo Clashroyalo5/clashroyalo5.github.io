@@ -30,7 +30,6 @@ navLinks.forEach(n => n.addEventListener('click', linkAction));
 /* ==================== CAMBIAR FONDO DEL HEADER AL HACER SCROLL ==================== */
 function scrollHeader() {
     const header = document.querySelector('.header');
-    // Cuando el scroll es mayor a 50 viewport height, añade la clase header-scroll
     if (this.scrollY >= 50) {
         header.classList.add('header-scroll');
     } else {
@@ -48,20 +47,40 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+    threshold: 0.1
 });
 
-const elementsToAnimate = document.querySelectorAll('.section__title, .section__subtitle, [class*="__container"]');
+const elementsToAnimate = document.querySelectorAll('.section__title, .section__subtitle, [class*="__container"], .socials__grid');
 elementsToAnimate.forEach((el) => observer.observe(el));
 
 
-/* ==================== MANEJO DEL FORMULARIO DE CONTACTO ==================== */
-const contactForm = document.querySelector('.contact__form');
+/* ==================== ANIMACIÓN Y CONTROL DE AUDIO (NUEVO) ==================== */
+const audios = document.querySelectorAll('.music__audio');
 
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Esta línea es la que debemos eliminar su efecto.
+audios.forEach(audio => {
+    // Al reproducir un audio
+    audio.addEventListener('play', () => {
+        // Pausar todos los demás audios
+        audios.forEach(a => {
+            if (a !== audio) {
+                a.pause();
+            }
+        });
+        
+        // Agregar la clase 'playing' a su tarjeta correspondiente
+        const imageContainer = audio.closest('.music__card').querySelector('.music__image-container');
+        imageContainer.classList.add('playing');
+    });
 
-    alert('¡Mensaje enviado con éxito! Gracias por contactarme.');
-    
-    contactForm.reset();
+    // Al pausar el audio
+    audio.addEventListener('pause', () => {
+        const imageContainer = audio.closest('.music__card').querySelector('.music__image-container');
+        imageContainer.classList.remove('playing');
+    });
+
+    // Al terminar la canción
+    audio.addEventListener('ended', () => {
+        const imageContainer = audio.closest('.music__card').querySelector('.music__image-container');
+        imageContainer.classList.remove('playing');
+    });
 });

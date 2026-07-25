@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abel Jaimes - Desarrollador de Software a Medida</title>
+    <title>Abel Nicolás Jaimes Orjuela - Programador Web Fullstack</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- Iconos Remix -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="style.css">
@@ -17,13 +18,14 @@
 
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="nav__logo">Abel Jaimes</a>
+            <a href="#" class="nav__logo">Hi there! 🙃</a>
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li><a href="#about" class="nav__link">Sobre Mí</a></li>
-                    <li><a href="#services" class="nav__link">Especialidades</a></li>
                     <li><a href="#projects" class="nav__link">Proyectos</a></li>
-                    <li><a href="#contact" class="nav__link nav__link--button">Hablemos</a></li>
+                    <li><a href="#games" class="nav__link">Juegos</a></li>
+                    <li><a href="#music" class="nav__link">Música</a></li>
+                    <li><a href="#socials" class="nav__link nav__link--button">Mis Redes</a></li>
                 </ul>
                 <div class="nav__close" id="nav-close"><i class="ri-close-line"></i></div>
             </div>
@@ -34,174 +36,200 @@
     </header>
 
     <main>
+        <!-- SECCIÓN HERO -->
         <section class="hero section">
             <div class="hero__container container grid">
                 <div class="hero__content">
-                    <span class="hero__subtitle">Desarrollador de Software</span>
+                    <span class="hero__subtitle">Estudiante & Desarrollador Web</span>
                     <h1 class="hero__title">
-                        Transformo tus ideas en <span>software potente</span> que impulsa tu negocio.
+                        Hola, soy <span>una persona</span>.
                     </h1>
                     <p class="hero__description">
-                        Desde aplicaciones web innovadoras hasta sistemas móviles intuitivos. Tu visión, mi código. Mi misión es crear soluciones a medida que resuelvan problemas reales y generen valor.
+                        Programador Web Fullstack de Chinácota, Norte de Santander. Me apasiona construir aplicaciones trabajando con HTML, CSS, JavaScript, bases de datos como Firebase y lógicas de backend.
                     </p>
                     <div class="hero__buttons">
-                        <a href="#contact" class="button">Agenda tu Consulta Gratuita</a>
-                        <a href="#projects" class="button button--ghost">Ver Mis Proyectos</a>
+                        <a href="#projects" class="button">Ver Páginas Creadas</a>
+                        <a href="#socials" class="button button--ghost">Mis Redes</a>
                     </div>
                 </div>
-                <div class="hero__image">
-                    <img src="./img/perfil.jpg" alt="Foto de Abel Jaimes">
-                </div>
+                <!-- <div class="hero__image">
+                    <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Foto de Abel Jaimes">
+                </div> -->
             </div>
         </section>
 
+        <!-- SECCIÓN SOBRE MÍ -->
         <section class="about section" id="about">
             <div class="about__container container grid">
                 <div class="about__content">
-                    <span class="section__subtitle">Mi Historia</span>
-                    <h2 class="section__title">Hola, soy Abel Jaimes. Mi compromiso es contigo y tu proyecto.</h2>
+                    <span class="section__subtitle">Quién Soy</span>
+                    <h2 class="section__title">Código, innovación y aprendizaje continuo.</h2>
                     <p class="about__description">
-                        Me apasiona la tecnología y la resolución creativa de problemas. Como desarrollador independiente, mi mayor ventaja es la atención personalizada que ofrezco. Me involucro al 100% en cada proyecto, asegurando una comunicación directa y transparente desde el primer día.
+                        Soy un programador en constante formación, enfocado en el desarrollo frontend y backend. Disfruto diseñando arquitecturas de bases de datos, estructurando lógica de filtrado y creando experiencias de usuario fluidas.
                     </p>
                     <p class="about__description">
-                        Mi filosofía es simple: construir software robusto, escalable y, sobre todo, útil.
+                        Cuando no estoy escribiendo código, analizando neologismos o aprendiendo nuevas tecnologías, disfruto de la música independiente y la simulación táctica en videojuegos.
                     </p>
-                </div>
-                <div class="about__stats">
-                    <div class="about__stat">
-                        <h3 class="about__stat-number">2+</h3>
-                        <span class="about__stat-text">Años de<br>Experiencia</span>
-                    </div>
-                    <div class="about__stat">
-                        <h3 class="about__stat-number">5+</h3>
-                        <span class="about__stat-text">Proyectos<br>Completados</span>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="services section" id="services">
-            <div class="container">
-                <span class="section__subtitle">Cómo te ayudo</span>
-                <h2 class="section__title">Mis Habilidades Clave</h2>
-                <div class="services__container grid">
-                    <div class="service__card">
-                        <i class="ri-window-line service__icon"></i>
-                        <h3 class="service__title">Desarrollo Web a Medida</h3>
-                        <p class="service__description">Creación de plataformas robustas y escalables, desde landing pages hasta complejas aplicaciones full-stack.</p>
-                    </div>
-                    <div class="service__card">
-                        <i class="ri-smartphone-line service__icon"></i>
-                        <h3 class="service__title">Apps Móviles Nativas e Híbridas</h3>
-                        <p class="service__description">Soluciones intuitivas y de alto rendimiento para iOS y Android que tus usuarios amarán.</p>
-                    </div>
-                    <div class="service__card">
-                        <i class="ri-database-2-line service__icon"></i>
-                        <h3 class="service__title">Optimización y Modernización</h3>
-                        <p class="service__description">Actualizo y mejoro tus sistemas existentes para asegurar eficiencia, seguridad y escalabilidad futura.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- SECCIÓN PROYECTOS -->
         <section class="projects section" id="projects">
             <div class="container">
-                <span class="section__subtitle">Mi Trabajo</span>
-                <h2 class="section__title">Soluciones que Generan Impacto</h2>
+                <span class="section__subtitle">Portafolio</span>
+                <h2 class="section__title">Páginas que he creado</h2>
                 <div class="projects__container grid">
+                    
                     <div class="project__card">
-                        <img src="https://papiquieropizzaya.com/Carrusel/12-2.jpg" alt="Imagen del proyecto 1" class="project__image">
+                        <img src="https://papiquieropizzaya.com/Carrusel/12-2.jpg" alt="Papi Quiero Pizza Ya" class="project__image">
                         <div class="project__content">
                             <h3 class="project__title">Papi Quiero Pizza Ya</h3>
-                            <p class="project__description">Desarrollo de una web donde los clientes podían ver los menus, los productos más pedidos, la ubicacón, y poder pedir.</p>
-                            <a href="https://papiquieropizzaya.com" class="project__link">Visitar<i class="ri-arrow-right-line"></i></a>
+                            <p class="project__description">Desarrollo integral del sistema de pedidos y menú online para la pizzería. Incluye notificaciones de audio y hooks de base de datos en tiempo real.</p>
+                            <a href="https://papiquieropizzaya.com" target="_blank" class="project__link">Visitar<i class="ri-arrow-right-line"></i></a>
                         </div>
                     </div>
+                    
                     <div class="project__card">
-                        <img src="./img/chinacota.jpg" alt="Imagen del proyecto 2" class="project__image">
+                        <img src="https://www.chinacota-nortedesantander.gov.co/info/chinacota_se/media/galeria/thumbs/thgaleria_1400X920_291.webp" alt="Chinácota" class="project__image">
                         <div class="project__content">
-                            <h3 class="project__title">Chinácota</h3>
-                            <p class="project__description">Página donde los visitantes pueden ver la historia de Chinácota, donde hospedarse, donde comer y que lugares visitar.</p>
+                            <h3 class="project__title">Portal Chinácota</h3>
+                            <p class="project__description">Página turística e informativa donde los visitantes pueden descubrir la historia de Chinácota, alojamiento y gastronomía local.</p>
                             <a href="https://chinacota.org/" class="project__link">Visitar<i class="ri-arrow-right-line"></i></a>
                         </div>
                     </div>
-                     <div class="project__card">
-                        <img src="https://coloresycasas.com/css/fondo/4.jpg" alt="Imagen del proyecto 3" class="project__image">
+
+                    <div class="project__card">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1000&auto=format&fit=crop" alt="Proyecto Escolar" class="project__image">
                         <div class="project__content">
-                            <h3 class="project__title">Colores y casas</h3>
-                            <p class="project__description">Landing page donde los clientes pueden ver acerca del negocio, saber su ubicacón, contactarlo y ver todos sus productos.</p>
-                            <a href="https://coloresycasas.com" class="project__link">Visitar<i class="ri-arrow-right-line"></i></a>
+                            <h3 class="project__title">Log de Reciclaje</h3>
+                            <p class="project__description">Plataforma estática alojada en GitHub Pages para un proyecto ambiental escolar, integrando tablas de datos históricos y métricas.</p>
+                            <a href="https://github.com/proyectopraecolprechi/proyectopraecolprechi.github.io" class="project__link">Ver Repositorio<i class="ri-arrow-right-line"></i></a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
-        
-        <!--<section class="testimonial section">
-            <div class="container">
-                <span class="section__subtitle">Opiniones</span>
-                <h2 class="section__title">Lo que mis clientes dicen</h2>
-                <div class="testimonial__container grid">
-                    <div class="testimonial__card">
-                        <p class="testimonial__quote">"Trabajar con Abel Jaimes fue una experiencia excepcional. Su atención al detalle y su compromiso con la calidad superaron nuestras expectativas. 100% recomendado."</p>
-                        <div class="testimonial__client">
-                            <div>
-                                <h4 class="testimonial__client-name">Ana García</h4>
-                                <span class="testimonial__client-title">CEO de Startup Creativa</span>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="testimonial__card">
-                        <p class="testimonial__quote">"La comunicación fue fluida y transparente durante todo el proceso. Entendió perfectamente nuestra visión y la ejecutó a la perfección. ¡Un verdadero profesional!"</p>
-                        <div class="testimonial__client">
-                            <div>
-                                <h4 class="testimonial__client-name">Carlos Rodriguez</h4>
-                                <span class="testimonial__client-title">Director de Operaciones, Tech Solutions</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>-->
 
-        <!--<section class="contact section" id="contact">
-            <div class="contact__container container grid">
-                <div class="contact__content">
-                    <span class="section__subtitle">¿Tienes una idea?</span>
-                    <h2 class="section__title">Construyamos algo impresionante juntos.</h2>
-                    <p class="contact__description">
-                        Estoy listo para escuchar sobre tu proyecto. Completa el formulario o envíame un correo y me pondré en contacto contigo a la brevedad para agendar una consulta gratuita y sin compromiso.
-                    </p>
+        <!-- SECCIÓN JUEGOS -->
+        <section class="games section" id="games">
+            <div class="container">
+                <span class="section__subtitle">Gaming</span>
+                <h2 class="section__title">Juegos que disfruto</h2>
+                <div class="projects__container grid">
+                    
+                    <div class="project__card">
+                        <img src="https://warthunder.com/i/opengraph-wt.jpg" alt="War Thunder" class="project__image">
+                        <div class="project__content">
+                            <h3 class="project__title">War Thunder</h3>
+                            <p class="project__description">Simulador de combate vehicular inmersivo. Me fascina estudiar sus mecánicas técnicas y la aviación militar realista que ofrece.</p>
+                        </div>
+                    </div>
+
+                    <div class="project__card">
+                        <img src="https://cms-assets.xboxservices.com/assets/65/15/6515e0be-8482-48bb-97f9-737010626408.jpg?n=Minecraft_Sneaky-Slider-1084_Tiny-Takeover_1600x675.jpg%202" alt="Minecraft" class="project__image">
+                        <div class="project__content">
+                            <h3 class="project__title">Minecraft</h3>
+                            <p class="project__description">Supervivencia y construcción libre. Un espacio excelente para relajarme, ser creativo y experimentar con mecánicas de bloques.</p>
+                        </div>
+                    </div>
+
+                    <div class="project__card">
+                        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238860/ss_8cd5ec2e4bf1986bc01265db93f184e38e3b1236.1920x1080.jpg?t=1777391884" alt="Battlefield 4" class="project__image">
+                        <div class="project__content">
+                            <h3 class="project__title">Battlefield 4</h3>
+                            <p class="project__description">Shooter táctico en primera persona. Disfruto del trabajo en equipo, la estrategia en mapas dinámicos y la acción pura.</p>
+                        </div>
+                    </div>
+
                 </div>
-                <form action="https://formspree.io/f/mkgvybqv" method="POST" class="contact__form">
-                    <div class="contact__form-group">
-                        <input type="text" name="name" placeholder="Tu Nombre" class="contact__input" required>
-                    </div>
-                    <div class="contact__form-group">
-                        <input type="email" name="email" placeholder="Tu Correo Electrónico" class="contact__input" required>
-                    </div>
-                    <div class="contact__form-group">
-                        <textarea name="message" placeholder="Cuéntame sobre tu proyecto..." class="contact__input" required></textarea>
-                    </div>
-                    <button type="submit" class="button">Enviar Mensaje</button>
-                </form>
             </div>
-        </section>-->
+        </section>
+
+        <!-- SECCIÓN MÚSICA -->
+        <section class="music section" id="music">
+            <div class="container">
+                <span class="section__subtitle">Mi Playlist</span>
+                <h2 class="section__title">Música que escucho</h2>
+                <div class="music__container grid">
+                    
+                    <!-- Canción 1 -->
+                    <div class="music__card">
+                        <div class="music__image-container">
+                            <img src="https://i.scdn.co/image/ab67616d0000b273d8be443dbdf8791c48d5faeb" alt="Portada de la canción" class="music__image">
+                            <div class="music__overlay"><i class="ri-music-2-fill"></i></div>
+                        </div>
+                        <div class="music__info">
+                            <h3 class="music__title">PP1</h3>
+                            <p class="music__author">Frakkur</p>
+                            <!-- Reemplaza el src con tu archivo .mp3 real -->
+                            <audio controls src="./audio/Frakkur - PP1 (SPOTISAVER).mp3" class="music__audio"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 2 -->
+                    <div class="music__card">
+                        <div class="music__image-container">
+                            <img src="https://i.scdn.co/image/ab67616d0000b273661c91263dcc137f9fc7e6cb" alt="Portada de la canción" class="music__image">
+                            <div class="music__overlay"><i class="ri-music-2-fill"></i></div>
+                        </div>
+                        <div class="music__info">
+                            <h3 class="music__title">Corduroy</h3>
+                            <p class="music__author">BoyWithUke</p>
+                            <!-- Reemplaza el src con tu archivo .mp3 real -->
+                            <audio controls src="./audio/BoyWithUke - Corduroy (SPOTISAVER).mp3" class="music__audio"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 3 -->
+                    <div class="music__card">
+                        <div class="music__image-container">
+                            <img src="https://i.scdn.co/image/ab67616d0000b2739a7659ee2556ffe158fb70dc" alt="Portada de la canción" class="music__image">
+                            <div class="music__overlay"><i class="ri-music-2-fill"></i></div>
+                        </div>
+                        <div class="music__info">
+                            <h3 class="music__title">Small Fry</h3>
+                            <p class="music__author">Curio Watts, BoyWithUke</p>
+                            <!-- Reemplaza el src con tu archivo .mp3 real -->
+                            <audio controls src="./audio/Curio Watts, BoyWithUke - Small Fry (SPOTISAVER).mp3" class="music__audio"></audio>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN REDES SOCIALES (Reemplaza Contacto) -->
+        <section class="socials-section section" id="socials">
+            <div class="container">
+                <span class="section__subtitle">Conecta Conmigo</span>
+                <h2 class="section__title">Mis Redes y Plataformas</h2>
+                <div class="socials__grid">
+                    <a href="https://github.com/Clashroyalo5" target="_blank" class="social__card github">
+                        <i class="ri-github-fill"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://discord.com/users/1068212435326091394" target="_blank" class="social__card discord">
+                        <i class="ri-discord-fill"></i>
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://www.instagram.com/clashroyalo5/xbox.com" target="_blank" class="social__card instagram">
+                        <i class="ri-instagram-fill"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
         <div class="footer__container container">
-            <p class="footer__copyright">&copy; 2025 Abel Jaimes. Todos los derechos reservados.</p>
-            <div class="footer__socials">
-                <a href="#" target="_blank" class="footer__social-link"><i class="ri-github-fill"></i></a>
-                <a href="#" target="_blank" class="footer__social-link"><i class="ri-linkedin-box-fill"></i></a>
-                <a href="#" target="_blank" class="footer__social-link"><i class="ri-twitter-x-line"></i></a>
-            </div>
+            <h3 class="footer__title">This is the end 🤗</h3>
+            <p class="footer__copyright">&copy; 2026 Alguien. Todos los derechos reservados.</p>
         </div>
     </footer>
     
     <script src="script.js"></script>
 </body>
 </html>
-
-
