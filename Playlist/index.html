@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor Moderno</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Librerías Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+
+    <main class="app-container">
+        <header class="top-bar">
+            <div>
+                <h1>Mi Biblioteca</h1>
+                <p id="song-count" class="subtitle">Cargando canciones...</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar canciones, artistas...">
+            </div>
+        </header>
+
+        <div class="playlist-container">
+            <div class="playlist-header">
+                <div class="col-index">#</div>
+                <div class="col-title">TÍTULO</div>
+                <div class="col-artist">ARTISTA</div>
+                <div class="col-album">ÁLBUM</div>
+            </div>
+            <div id="playlist-body" class="playlist-body">
+                <!-- Las canciones se inyectan aquí -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="player">
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="player-content">
+            <div class="now-playing">
+                <img id="player-cover" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2330363D'/></svg>" alt="Cover" class="player-cover">
+                <div class="now-playing-info">
+                    <div id="player-title" class="player-title">Selecciona una canción</div>
+                    <div id="player-artist" class="player-artist">-</div>
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <button id="btn-shuffle" class="control-btn" aria-label="Aleatorio">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
+                </button>
+                <button id="btn-prev" class="control-btn" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                </button>
+                <button id="btn-play" class="control-btn play-btn" aria-label="Play/Pause">
+                    <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+                <button id="btn-next" class="control-btn" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                </button>
+                <button id="btn-repeat" class="control-btn" aria-label="Repetir">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                </button>
+            </div>
+
+            <div class="player-time-volume">
+                <span id="time-current">0:00</span>
+                <span>/</span>
+                <span id="time-total">0:00</span>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
