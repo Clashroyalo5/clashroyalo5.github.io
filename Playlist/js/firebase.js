@@ -12,7 +12,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const PLAYLIST_DOC_ID = "main_playlist"; // Documento donde se guardará el orden
+const PLAYLIST_DOC_ID = "main_playlist"; 
 
 export async function getFirebaseOrder() {
     try {

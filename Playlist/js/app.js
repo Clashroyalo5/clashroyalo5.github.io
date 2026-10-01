@@ -1,13 +1,7 @@
 import { getFirebaseOrder, saveFirebaseOrder } from './firebase.js';
 
-// --- CONFIGURACIÓN Y ESTADOS ---
-// Debes colocar el nombre EXACTO del archivo incluyendo la extensión
-const musicFiles = [
-    "music/Alan Walker, Ava Max - Alone, Pt. II (SPOTISAVER).mp3",
-    "music/cancion2.mp3",
-    "music/cancion3.mp3"
-];
-
+// --- ESTADOS GLOBALES ---
+let musicFiles = [];
 let globalMetadataCache = {}; 
 let visualOrder = [];         
 let shuffleQueue = [];        
@@ -31,8 +25,8 @@ const progressBar = document.getElementById('progress-bar');
 const progressContainer = document.getElementById('progress-container');
 const volumeSlider = document.getElementById('volume-slider');
 
-// --- INDEXEDDB PARA CACHE ---
-const dbName = "MusicDB";
+// --- INDEXEDDB PARA CACHE (Versión 3) ---
+const dbName = "MusicDB_v3"; 
 function initDB() {
     return new Promise((resolve, reject) => {
         const req = indexedDB.open(dbName, 1);
@@ -60,62 +54,119 @@ function saveToDB(db, data) {
     tx.objectStore("metadata").put(data);
 }
 
-// --- EXTRACCIÓN METADATOS INTELIGENTE ---
-function extractMetadata(path) {
-    return new Promise((resolve) => {
-        // Extraer nombre del archivo decodificado (por si tiene %20)
-        const fileName = decodeURIComponent(path.split('/').pop().replace('.mp3', ''));
+// --- ESCANEO AUTOMÁTICO DE LA CARPETA MUSIC ---
+async function fetchMusicFilesAutomatically() {
+    let files = [];
+    const host = window.location.hostname;
+    
+    // GitHub Pages
+    if (host.includes('github.io')) {
+        const username = host.split('.')[0];
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        const repo = pathParts.length > 0 ? pathParts[0] : '';
         
-        // Separar "Artista - Título" si el archivo tiene ese formato
+        if (repo) {
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/music`;
+            try {
+                const res = await fetch(apiUrl);
+                if (res.ok) {
+                    const data = await res.json();
+                    files = data.filter(f => f.name.toLowerCase().endsWith('.mp3')).map(f => f.path);
+                    return files;
+                }
+            } catch (e) { console.warn("Fallback de GitHub API", e); }
+        }
+    }
+
+    // Local / Fallback
+    try {
+        const res = await fetch('music/');
+        if (res.ok) {
+            const text = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const links = Array.from(doc.querySelectorAll('a'));
+            
+            files = links
+                .map(a => a.getAttribute('href'))
+                .filter(href => href && href.toLowerCase().endsWith('.mp3'))
+                .map(href => {
+                    const fileName = decodeURIComponent(href).split('/').pop();
+                    return 'music/' + fileName;
+                });
+            
+            files = [...new Set(files)]; 
+            if (files.length > 0) return files;
+        }
+    } catch (e) { console.warn("No se pudo listar el directorio local", e); }
+    
+    return files;
+}
+
+// --- EXTRACCIÓN METADATOS ---
+function extractMetadata(path) {
+    return new Promise(async (resolve) => {
+        let fileName = decodeURIComponent(path.split('/').pop().replace(/\.mp3$/i, ''));
+        fileName = fileName.replace(/\s*\(SPOTISAVER\)\s*/ig, '').trim();
+        
         let fallbackArtist = "Desconocido";
         let fallbackTitle = fileName;
         
         if (fileName.includes(' - ')) {
             const parts = fileName.split(' - ');
             fallbackArtist = parts[0].trim();
-            fallbackTitle = parts[1].trim(); // Toma el resto como título
+            fallbackTitle = parts.slice(1).join(' - ').trim();
         }
 
-        fetch(path)
-            .then(res => {
-                if(!res.ok) throw new Error("Fetch failed (posible problema de CORS o ruta incorrecta)");
-                return res.blob();
-            })
-            .then(blob => {
-                jsmediatags.read(blob, {
-                    onSuccess: function(tag) {
-                        let coverUrl = null;
-                        if (tag.tags && tag.tags.picture) {
-                            const { data, format } = tag.tags.picture;
-                            let base64String = "";
-                            for (let i = 0; i < data.length; i++) {
-                                base64String += String.fromCharCode(data[i]);
-                            }
-                            coverUrl = `data:${format};base64,${btoa(base64String)}`;
+        try {
+            const safeUrl = new URL(path, window.location.origin).href;
+            const response = await fetch(safeUrl);
+            if (!response.ok) throw new Error("CORS o archivo no encontrado");
+            
+            const blob = await response.blob();
+            
+            jsmediatags.read(blob, {
+                onSuccess: function(tag) {
+                    let coverUrl = null;
+                    if (tag.tags && tag.tags.picture) {
+                        const { data, format } = tag.tags.picture;
+                        let base64String = "";
+                        for (let i = 0; i < data.length; i++) {
+                            base64String += String.fromCharCode(data[i]);
                         }
-                        resolve({
-                            path,
-                            title: tag.tags.title || fallbackTitle,
-                            artist: tag.tags.artist || fallbackArtist,
-                            album: tag.tags.album || 'Sin álbum',
-                            cover: coverUrl
-                        });
-                    },
-                    onError: function() {
-                        // Falla la librería jsmediatags, usamos los nombres del archivo
-                        resolve({ path, title: fallbackTitle, artist: fallbackArtist, album: 'Desconocido', cover: null });
+                        coverUrl = `data:${format};base64,${btoa(base64String)}`;
                     }
-                });
-            })
-            .catch(() => {
-                // Falla el fetch (CORS o archivo no existe), usamos los nombres del archivo
-                resolve({ path, title: fallbackTitle, artist: fallbackArtist, album: 'Error de carga', cover: null });
+                    
+                    let realTitle = tag.tags.title ? tag.tags.title.replace(/\s*\(SPOTISAVER\)\s*/ig, '').trim() : fallbackTitle;
+                    
+                    resolve({
+                        path,
+                        title: realTitle,
+                        artist: tag.tags.artist || fallbackArtist,
+                        album: tag.tags.album || 'Sin álbum',
+                        cover: coverUrl
+                    });
+                },
+                onError: function() {
+                    resolve({ path, title: fallbackTitle, artist: fallbackArtist, album: 'Desconocido', cover: null });
+                }
             });
+        } catch (error) {
+            resolve({ path, title: fallbackTitle, artist: fallbackArtist, album: 'Desconocido', cover: null });
+        }
     });
 }
 
 // --- INICIALIZACIÓN ---
 async function initApp() {
+    musicFiles = await fetchMusicFilesAutomatically();
+    
+    if (musicFiles.length === 0) {
+        songCount.textContent = "0 canciones encontradas";
+        alert("Asegúrate de tener los archivos .mp3 dentro de la carpeta 'music'. Si estás en GitHub, asegúrate de haber hecho push.");
+        return;
+    }
+
     const db = await initDB();
     
     for (const path of musicFiles) {
@@ -180,7 +231,8 @@ function renderPlaylist(orderArray) {
             <div class="col-album">${meta.album}</div>
         `;
         
-        row.addEventListener('click', () => playSong(path));
+        // Al hacer clic manual, pasamos true para indicar que el usuario interrumpió la cola
+        row.addEventListener('click', () => playSong(path, true));
         playlistBody.appendChild(row);
     });
 }
@@ -197,7 +249,7 @@ function initSortable() {
     new Sortable(playlistBody, {
         animation: 150,
         ghostClass: 'sortable-ghost',
-        onEnd: function (evt) {
+        onEnd: function () {
             const rows = Array.from(playlistBody.querySelectorAll('.song-row'));
             visualOrder = rows.map(row => row.dataset.path);
             updateVisualIndexes();
@@ -237,18 +289,25 @@ function generateShuffleQueue(startPath) {
     return [startPath, ...pool];
 }
 
-function playSong(path) {
+// El parámetro isManualClick evita que la cola se regenere al pasar a la siguiente canción
+function playSong(path, isManualClick = false) {
     currentSongPath = path;
     
-    if (isShuffle) {
+    // Solo generamos una nueva cola aleatoria si el usuario hizo clic en la lista manualmente
+    // o si el modo aleatorio está encendido pero la cola está vacía
+    if (isShuffle && (isManualClick || shuffleQueue.length === 0)) {
         shuffleQueue = generateShuffleQueue(path);
     }
 
-    audio.src = path;
-    audio.play();
+    const safeUrl = new URL(path, window.location.origin).href;
+    audio.src = safeUrl;
     
-    iconPlay.style.display = 'none';
-    iconPause.style.display = 'block';
+    audio.play().then(() => {
+        iconPlay.style.display = 'none';
+        iconPause.style.display = 'block';
+    }).catch(error => {
+        console.error("Error reproduciendo:", error);
+    });
     
     updatePlayerUI(path);
     
@@ -271,26 +330,34 @@ btnShuffle.addEventListener('click', () => {
 
 btnNext.addEventListener('click', () => {
     if (!currentSongPath) return;
-    
     let nextPath;
+    
     if (isShuffle) {
         const idx = shuffleQueue.indexOf(currentSongPath);
-        nextPath = (idx === -1 || idx === shuffleQueue.length - 1) ? shuffleQueue[0] : shuffleQueue[idx + 1];
+        // Si llegamos a la última canción aleatoria, generamos una mezcla nueva
+        if (idx === -1 || idx === shuffleQueue.length - 1) {
+            const randomStart = visualOrder[Math.floor(Math.random() * visualOrder.length)];
+            shuffleQueue = generateShuffleQueue(randomStart);
+            nextPath = shuffleQueue[0];
+        } else {
+            nextPath = shuffleQueue[idx + 1];
+        }
     } else {
         const idx = visualOrder.indexOf(currentSongPath);
         nextPath = (idx === -1 || idx === visualOrder.length - 1) ? visualOrder[0] : visualOrder[idx + 1];
     }
-    playSong(nextPath);
+    
+    // Pasamos false porque el cambio es automático por la lista, no manual
+    playSong(nextPath, false); 
 });
 
 btnPrev.addEventListener('click', () => {
     if (!currentSongPath) return;
-    
     if (audio.currentTime > 3) {
         audio.currentTime = 0;
         return;
     }
-
+    
     let prevPath;
     if (isShuffle) {
         const idx = shuffleQueue.indexOf(currentSongPath);
@@ -299,18 +366,20 @@ btnPrev.addEventListener('click', () => {
         const idx = visualOrder.indexOf(currentSongPath);
         prevPath = (idx <= 0) ? visualOrder[visualOrder.length - 1] : visualOrder[idx - 1];
     }
-    playSong(prevPath);
+    
+    playSong(prevPath, false);
 });
 
 btnPlay.addEventListener('click', () => {
     if (!currentSongPath && visualOrder.length > 0) {
-        playSong(visualOrder[0]);
+        playSong(visualOrder[0], true);
         return;
     }
     if (audio.paused) {
-        audio.play();
-        iconPlay.style.display = 'none';
-        iconPause.style.display = 'block';
+        audio.play().then(() => {
+            iconPlay.style.display = 'none';
+            iconPause.style.display = 'block';
+        }).catch(e => console.error(e));
     } else {
         audio.pause();
         iconPlay.style.display = 'block';
@@ -318,6 +387,7 @@ btnPlay.addEventListener('click', () => {
     }
 });
 
+// Cuando termina la canción automáticamente se llama al mismo evento de btnNext
 audio.addEventListener('ended', () => btnNext.click());
 
 // --- UI DEL REPRODUCTOR ---
