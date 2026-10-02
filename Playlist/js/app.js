@@ -55,69 +55,51 @@ function saveToDB(db, data) {
 }
 
 // --- ESCANEO AUTOMÁTICO BLINDADO (Soporta 'Music' y 'music') ---
+// --- ESCANEO AUTOMÁTICO BLINDADO PARA DOMINIOS PERSONALIZADOS ---
 async function fetchMusicFilesAutomatically() {
     let files = [];
-    const host = window.location.hostname;
-    
-    // 1. EXTRAER USUARIO Y REPO AUTOMÁTICAMENTE
-    let username = "";
-    let repo = "";
-    
-    if (host.includes('github.io')) {
-        username = host.split('.')[0];
-        const pathParts = window.location.pathname.split('/').filter(p => p);
-        // Si hay subruta es el repo, si no, el repo es el mismo usuario.github.io
-        repo = pathParts.length > 0 ? pathParts[0] : `${username}.github.io`;
-    } 
-    
-    /* ¡IMPORTANTE! Si estás usando un dominio personalizado o la lectura automática
-       falla sistemáticamente, descomenta estas dos líneas y pon tus datos reales: */
-    // username = "TU_USUARIO_DE_GITHUB"; 
-    // repo = "EL_NOMBRE_DE_TU_REPOSITORIO";
 
-    // Intentar leer desde la API de GitHub
-    if (username && repo) {
-        // Probamos primero con 'Music' (Mayúscula) y luego con 'music' (Minúscula)
-        const carpetas = ['Music', 'music']; 
-        
-        for (const carpeta of carpetas) {
-            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${carpeta}`;
-            try {
-                const res = await fetch(apiUrl);
-                if (res.ok) {
-                    const data = await res.json();
-                    files = data
-                        .filter(f => f.name.toLowerCase().endsWith('.mp3'))
-                        .map(f => f.path);
-                    
-                    if (files.length > 0) return files;
-                } else if (res.status === 403) {
-                    alert("Límite de GitHub alcanzado: Recargaste la página demasiadas veces y GitHub bloqueó la lectura automática (límite de 60 por hora). Tendrás que esperar un rato.");
-                    return [];
+    // 👇 IMPORTANTE: COMO TIENES DOMINIO PROPIO, DEBES LLENAR ESTO A MANO 👇
+    const username = "TU_USUARIO_DE_GITHUB"; // <--- CAMBIA ESTO por tu usuario (el dueño del repo)
+    const repo = "Playlist";                 // <--- Según tu URL, tu repo se llama "Playlist"
+
+    // Probamos todas las combinaciones de mayúsculas/minúsculas
+    const carpetas = ['Music', 'music', 'MUSIC']; 
+    
+    for (const carpeta of carpetas) {
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${carpeta}`;
+        try {
+            const res = await fetch(apiUrl);
+            if (res.ok) {
+                const data = await res.json();
+                files = data
+                    .filter(f => f.name.toLowerCase().endsWith('.mp3'))
+                    .map(f => f.path);
+                
+                if (files.length > 0) {
+                    console.log(`✅ ${files.length} canciones encontradas en /${carpeta}`);
+                    return files;
                 }
-            } catch (e) {
-                console.warn(`No se encontró en /${carpeta} vía API`);
+            } else if (res.status === 403) {
+                alert("⚠️ Límite de GitHub API alcanzado por recargar mucho. Toca esperar 1 hora para que GitHub te deje volver a leer la carpeta.");
+                return [];
             }
+        } catch (e) {
+            console.warn(`Buscando en /${carpeta}...`);
         }
     }
 
-    // 2. FALLBACK PARA LIVE SERVER LOCAL (Prueba ambas carpetas)
-    const carpetasLocales = ['Music/', 'music/'];
-    for (const carpeta of carpetasLocales) {
+    // Fallback local por si estás programando en Live Server en tu PC
+    if (files.length === 0 && window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
         try {
-            const res = await fetch(carpeta);
+            const res = await fetch('music/');
             if (res.ok) {
                 const text = await res.text();
                 const doc = new DOMParser().parseFromString(text, 'text/html');
-                const links = Array.from(doc.querySelectorAll('a'));
-                
-                let localFiles = links
+                return Array.from(doc.querySelectorAll('a'))
                     .map(a => a.getAttribute('href'))
                     .filter(href => href && href.toLowerCase().endsWith('.mp3'))
-                    .map(href => carpeta + decodeURIComponent(href).split('/').pop());
-                    
-                localFiles = [...new Set(localFiles)];
-                if (localFiles.length > 0) return localFiles;
+                    .map(href => 'music/' + decodeURIComponent(href).split('/').pop());
             }
         } catch (e) {}
     }
