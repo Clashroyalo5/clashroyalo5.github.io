@@ -60,8 +60,8 @@ async function fetchMusicFilesAutomatically() {
     let files = [];
 
     // 👇 IMPORTANTE: COMO TIENES DOMINIO PROPIO, DEBES LLENAR ESTO A MANO 👇
-    const username = "TU_USUARIO_DE_GITHUB"; // <--- CAMBIA ESTO por tu usuario (el dueño del repo)
-    const repo = "Playlist";                 // <--- Según tu URL, tu repo se llama "Playlist"
+    const username = "Clashroyalo5"; // <--- CAMBIA ESTO por tu usuario (el dueño del repo)
+    const repo = "clashroyalo5.github.io";                 // <--- Según tu URL, tu repo se llama "Playlist"
 
     // Probamos todas las combinaciones de mayúsculas/minúsculas
     const carpetas = ['Music', 'music', 'MUSIC']; 
