@@ -54,51 +54,73 @@ function saveToDB(db, data) {
     tx.objectStore("metadata").put(data);
 }
 
-// --- ESCANEO AUTOMÁTICO DE LA CARPETA MUSIC ---
+// --- ESCANEO AUTOMÁTICO BLINDADO (Soporta 'Music' y 'music') ---
 async function fetchMusicFilesAutomatically() {
     let files = [];
     const host = window.location.hostname;
     
-    // GitHub Pages
+    // 1. EXTRAER USUARIO Y REPO AUTOMÁTICAMENTE
+    let username = "";
+    let repo = "";
+    
     if (host.includes('github.io')) {
-        const username = host.split('.')[0];
+        username = host.split('.')[0];
         const pathParts = window.location.pathname.split('/').filter(p => p);
-        const repo = pathParts.length > 0 ? pathParts[0] : '';
+        // Si hay subruta es el repo, si no, el repo es el mismo usuario.github.io
+        repo = pathParts.length > 0 ? pathParts[0] : `${username}.github.io`;
+    } 
+    
+    /* ¡IMPORTANTE! Si estás usando un dominio personalizado o la lectura automática
+       falla sistemáticamente, descomenta estas dos líneas y pon tus datos reales: */
+    // username = "TU_USUARIO_DE_GITHUB"; 
+    // repo = "EL_NOMBRE_DE_TU_REPOSITORIO";
+
+    // Intentar leer desde la API de GitHub
+    if (username && repo) {
+        // Probamos primero con 'Music' (Mayúscula) y luego con 'music' (Minúscula)
+        const carpetas = ['Music', 'music']; 
         
-        if (repo) {
-            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/music`;
+        for (const carpeta of carpetas) {
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${carpeta}`;
             try {
                 const res = await fetch(apiUrl);
                 if (res.ok) {
                     const data = await res.json();
-                    files = data.filter(f => f.name.toLowerCase().endsWith('.mp3')).map(f => f.path);
-                    return files;
+                    files = data
+                        .filter(f => f.name.toLowerCase().endsWith('.mp3'))
+                        .map(f => f.path);
+                    
+                    if (files.length > 0) return files;
+                } else if (res.status === 403) {
+                    alert("Límite de GitHub alcanzado: Recargaste la página demasiadas veces y GitHub bloqueó la lectura automática (límite de 60 por hora). Tendrás que esperar un rato.");
+                    return [];
                 }
-            } catch (e) { console.warn("Fallback de GitHub API", e); }
+            } catch (e) {
+                console.warn(`No se encontró en /${carpeta} vía API`);
+            }
         }
     }
 
-    // Local / Fallback
-    try {
-        const res = await fetch('music/');
-        if (res.ok) {
-            const text = await res.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            const links = Array.from(doc.querySelectorAll('a'));
-            
-            files = links
-                .map(a => a.getAttribute('href'))
-                .filter(href => href && href.toLowerCase().endsWith('.mp3'))
-                .map(href => {
-                    const fileName = decodeURIComponent(href).split('/').pop();
-                    return 'music/' + fileName;
-                });
-            
-            files = [...new Set(files)]; 
-            if (files.length > 0) return files;
-        }
-    } catch (e) { console.warn("No se pudo listar el directorio local", e); }
+    // 2. FALLBACK PARA LIVE SERVER LOCAL (Prueba ambas carpetas)
+    const carpetasLocales = ['Music/', 'music/'];
+    for (const carpeta of carpetasLocales) {
+        try {
+            const res = await fetch(carpeta);
+            if (res.ok) {
+                const text = await res.text();
+                const doc = new DOMParser().parseFromString(text, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'));
+                
+                let localFiles = links
+                    .map(a => a.getAttribute('href'))
+                    .filter(href => href && href.toLowerCase().endsWith('.mp3'))
+                    .map(href => carpeta + decodeURIComponent(href).split('/').pop());
+                    
+                localFiles = [...new Set(localFiles)];
+                if (localFiles.length > 0) return localFiles;
+            }
+        } catch (e) {}
+    }
     
     return files;
 }
@@ -163,7 +185,7 @@ async function initApp() {
     
     if (musicFiles.length === 0) {
         songCount.textContent = "0 canciones encontradas";
-        alert("Asegúrate de tener los archivos .mp3 dentro de la carpeta 'music'. Si estás en GitHub, asegúrate de haber hecho push.");
+        alert("No se pudieron leer los archivos .mp3. Asegúrate de que la carpeta se llama exactamente 'Music' o 'music'.");
         return;
     }
 
@@ -231,7 +253,6 @@ function renderPlaylist(orderArray) {
             <div class="col-album">${meta.album}</div>
         `;
         
-        // Al hacer clic manual, pasamos true para indicar que el usuario interrumpió la cola
         row.addEventListener('click', () => playSong(path, true));
         playlistBody.appendChild(row);
     });
@@ -289,12 +310,9 @@ function generateShuffleQueue(startPath) {
     return [startPath, ...pool];
 }
 
-// El parámetro isManualClick evita que la cola se regenere al pasar a la siguiente canción
 function playSong(path, isManualClick = false) {
     currentSongPath = path;
     
-    // Solo generamos una nueva cola aleatoria si el usuario hizo clic en la lista manualmente
-    // o si el modo aleatorio está encendido pero la cola está vacía
     if (isShuffle && (isManualClick || shuffleQueue.length === 0)) {
         shuffleQueue = generateShuffleQueue(path);
     }
@@ -334,7 +352,6 @@ btnNext.addEventListener('click', () => {
     
     if (isShuffle) {
         const idx = shuffleQueue.indexOf(currentSongPath);
-        // Si llegamos a la última canción aleatoria, generamos una mezcla nueva
         if (idx === -1 || idx === shuffleQueue.length - 1) {
             const randomStart = visualOrder[Math.floor(Math.random() * visualOrder.length)];
             shuffleQueue = generateShuffleQueue(randomStart);
@@ -347,7 +364,6 @@ btnNext.addEventListener('click', () => {
         nextPath = (idx === -1 || idx === visualOrder.length - 1) ? visualOrder[0] : visualOrder[idx + 1];
     }
     
-    // Pasamos false porque el cambio es automático por la lista, no manual
     playSong(nextPath, false); 
 });
 
@@ -387,7 +403,6 @@ btnPlay.addEventListener('click', () => {
     }
 });
 
-// Cuando termina la canción automáticamente se llama al mismo evento de btnNext
 audio.addEventListener('ended', () => btnNext.click());
 
 // --- UI DEL REPRODUCTOR ---
