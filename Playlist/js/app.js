@@ -54,43 +54,43 @@ function saveToDB(db, data) {
     tx.objectStore("metadata").put(data);
 }
 
-// --- ESCANEO AUTOMÁTICO BLINDADO (Soporta 'Music' y 'music') ---
-// --- ESCANEO AUTOMÁTICO BLINDADO PARA DOMINIOS PERSONALIZADOS ---
+// --- ESCANEO AUTOMÁTICO BLINDADO (API TREES) ---
 async function fetchMusicFilesAutomatically() {
     let files = [];
-
-    // 👇 IMPORTANTE: COMO TIENES DOMINIO PROPIO, DEBES LLENAR ESTO A MANO 👇
-    const username = "Clashroyalo5"; // <--- CAMBIA ESTO por tu usuario (el dueño del repo)
-    const repo = "clashroyalo5.github.io";                 // <--- Según tu URL, tu repo se llama "Playlist"
-
-    // Probamos todas las combinaciones de mayúsculas/minúsculas
-    const carpetas = ['Music', 'music', 'MUSIC']; 
+    const username = "Clashroyalo5";
+    const repo = "clashroyalo5.github.io"; 
     
-    for (const carpeta of carpetas) {
-        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${carpeta}`;
+    // Probamos las ramas comunes donde puede estar alojada tu web
+    const branches = ['main', 'master', 'gh-pages']; 
+    
+    for (const branch of branches) {
+        // La API de árboles busca en todo el repositorio recursivamente
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/git/trees/${branch}?recursive=1`;
         try {
             const res = await fetch(apiUrl);
             if (res.ok) {
                 const data = await res.json();
-                files = data
-                    .filter(f => f.name.toLowerCase().endsWith('.mp3'))
-                    .map(f => f.path);
+                
+                // Filtramos cualquier archivo en cualquier carpeta que termine en .mp3
+                files = data.tree
+                    .filter(item => item.type === 'blob' && item.path.toLowerCase().endsWith('.mp3'))
+                    .map(item => item.path);
                 
                 if (files.length > 0) {
-                    console.log(`✅ ${files.length} canciones encontradas en /${carpeta}`);
+                    console.log(`✅ ${files.length} canciones encontradas en la rama ${branch}`);
                     return files;
                 }
             } else if (res.status === 403) {
-                alert("⚠️ Límite de GitHub API alcanzado por recargar mucho. Toca esperar 1 hora para que GitHub te deje volver a leer la carpeta.");
+                alert("⚠️ Límite de GitHub API alcanzado por recargar mucho. Toca esperar 1 hora.");
                 return [];
             }
         } catch (e) {
-            console.warn(`Buscando en /${carpeta}...`);
+            console.warn(`Buscando en rama ${branch} falló...`);
         }
     }
 
-    // Fallback local por si estás programando en Live Server en tu PC
-    if (files.length === 0 && window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+    // Fallback local por si estás programando en Live Server
+    if (files.length === 0 && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')) {
         try {
             const res = await fetch('music/');
             if (res.ok) {
@@ -110,8 +110,16 @@ async function fetchMusicFilesAutomatically() {
 // --- EXTRACCIÓN METADATOS ---
 function extractMetadata(path) {
     return new Promise(async (resolve) => {
-        let fileName = decodeURIComponent(path.split('/').pop().replace(/\.mp3$/i, ''));
-        fileName = fileName.replace(/\s*\(SPOTISAVER\)\s*/ig, '').trim();
+        // 1. Obtenemos el nombre del archivo
+        let fileName = decodeURIComponent(path.split('/').pop());
+        
+        // 2. Quitamos el ".mp3" al final de forma manual, sin expresiones regulares
+        if (fileName.toLowerCase().endsWith('.mp3')) {
+            fileName = fileName.slice(0, -4); 
+        }
+        
+        // 3. Limpieza segura del texto "(SPOTISAVER)"
+        fileName = fileName.split('(SPOTI')[0].trim();
         
         let fallbackArtist = "Desconocido";
         let fallbackTitle = fileName;
@@ -141,7 +149,9 @@ function extractMetadata(path) {
                         coverUrl = `data:${format};base64,${btoa(base64String)}`;
                     }
                     
-                    let realTitle = tag.tags.title ? tag.tags.title.replace(/\s*\(SPOTISAVER\)\s*/ig, '').trim() : fallbackTitle;
+                    // Limpieza segura también para el título interno de los metadatos
+                    let rawTitle = tag.tags.title || fallbackTitle;
+                    let realTitle = rawTitle.split('(SPOTI')[0].trim();
                     
                     resolve({
                         path,
@@ -167,7 +177,7 @@ async function initApp() {
     
     if (musicFiles.length === 0) {
         songCount.textContent = "0 canciones encontradas";
-        alert("No se pudieron leer los archivos .mp3. Asegúrate de que la carpeta se llama exactamente 'Music' o 'music'.");
+        alert("No se pudieron leer los archivos .mp3. Asegúrate de tener las canciones subidas.");
         return;
     }
 
