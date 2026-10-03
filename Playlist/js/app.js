@@ -110,8 +110,16 @@ async function fetchMusicFilesAutomatically() {
 // --- EXTRACCIÓN METADATOS ---
 function extractMetadata(path) {
     return new Promise(async (resolve) => {
-        let fileName = decodeURIComponent(path.split('/').pop().replace(/\.mp3$/i, ''));
-        fileName = fileName.replace(/\s*\(SPOTISAVER\)\s*/ig, '').trim();
+        // 1. Obtenemos el nombre del archivo
+        let fileName = decodeURIComponent(path.split('/').pop());
+        
+        // 2. Quitamos el ".mp3" al final de forma manual, sin expresiones regulares
+        if (fileName.toLowerCase().endsWith('.mp3')) {
+            fileName = fileName.slice(0, -4); 
+        }
+        
+        // 3. Limpieza segura del texto "(SPOTISAVER)"
+        fileName = fileName.split('(SPOTI')[0].trim();
         
         let fallbackArtist = "Desconocido";
         let fallbackTitle = fileName;
@@ -141,7 +149,9 @@ function extractMetadata(path) {
                         coverUrl = `data:${format};base64,${btoa(base64String)}`;
                     }
                     
-                    let realTitle = tag.tags.title ? tag.tags.title.replace(/\s*\(SPOTISAVER\)\s*/ig, '').trim() : fallbackTitle;
+                    // Limpieza segura también para el título interno de los metadatos
+                    let rawTitle = tag.tags.title || fallbackTitle;
+                    let realTitle = rawTitle.split('(SPOTI')[0].trim();
                     
                     resolve({
                         path,
